@@ -207,6 +207,7 @@
       <p class="sub">Get the link the day it's out, plus a chance to try it early from 16 October.</p>
       <div id="tally-wrap"></div>
       <a id="fallback" class="button" href="mailto:info@qurek.biz?subject=Acatability%20waitlist&body=Please%20add%20me%20to%20the%20Acatability%20waitlist.%0A%0AFirst%20name%3A%20%0AWho%20I%27d%20journal%20with%3A%20%0AWant%20to%20try%20it%20early%3F%20Yes%20%2F%20No">Join the waitlist</a>
+      <p class="fine" id="direct" hidden>Form not showing? <a href="https://tally.so/r/b50xX7">Open it here</a>.</p>
       <p class="fine">We'll only email you about the launch (3 emails at most). Ask us to remove you any time at <a href="mailto:info@qurek.biz">info@qurek.biz</a>.</p>
     </section>
 
@@ -226,13 +227,16 @@
     if (TALLY_FORM_ID) {
       var frame = document.createElement("iframe");
       frame.title = "Acatability waitlist";
-      frame.loading = "lazy";
       frame.setAttribute("data-tally-src", "https://tally.so/embed/" + TALLY_FORM_ID + "?hideTitle=1&transparentBackground=1&dynamicHeight=1");
       document.getElementById("tally-wrap").appendChild(frame);
       document.getElementById("fallback").remove();
+      document.getElementById("direct").hidden = false;
       var s = document.createElement("script");
       s.src = "https://tally.so/widgets/embed.js";
-      s.onload = function () { if (window.Tally) window.Tally.loadEmbeds(); };
+      s.onload = s.onerror = function () {
+        if (window.Tally) { window.Tally.loadEmbeds(); }
+        else { frame.src = frame.getAttribute("data-tally-src"); }
+      };
       document.body.appendChild(s);
     }
   </script>
