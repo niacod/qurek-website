@@ -4,11 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acatability: journal with your best friend</title>
-  <meta name="description" content="A tiny daily journal you do with your best friend. You each write privately, neither of you reads the other's journal, and a small cat celebrates every check-in. iPhone, launching 27 October." />
+  <meta name="description" content="A tiny daily journal you do with your best friend. You each write privately, neither of you reads the other's journal, and a small cat celebrates every check-in. iPhone, launching Sunday 1 November." />
   <meta property="og:title" content="Acatability: journal with your best friend" />
   <meta property="og:description" content="Write alone. Show up together. A small cat throws a party every time you do." />
   <meta property="og:url" content="https://qurek.biz/acatability/" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://qurek.biz/acatability/share.png" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="apple-touch-icon" href="icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Fredoka:wght@600&family=Quicksand:wght@500;600&display=swap" rel="stylesheet" />
@@ -26,8 +30,6 @@
       --blush: #FFD6DE;
       --border: #F0DDE3;
       --on-accent: #FFF8FA;
-      --cat: #9A8F97;
-      --cat-dark: #5E5359;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -41,8 +43,6 @@
         --blush: #4A2530;
         --border: #3D1F28;
         --on-accent: #3A1020;
-        --cat: #B5ABB2;
-        --cat-dark: #2A1A22;
       }
     }
 
@@ -69,17 +69,17 @@
 
     .hero { text-align: center; padding: 24px 0 8px; }
 
-    .cat { width: 148px; height: auto; margin: 8px auto 12px; display: block; }
-    .cat .breathe { transform-origin: 70px 118px; }
-    .cat .tail { transform-origin: 104px 116px; }
-    @media (prefers-reduced-motion: no-preference) {
-      .cat .breathe { animation: breathe 3.2s ease-in-out infinite; }
-      .cat .tail { animation: swish 2.6s ease-in-out infinite; }
-      .cat .eye { animation: blink 5s infinite; transform-box: fill-box; transform-origin: center; }
+    .mascot {
+      display: block;
+      width: 132px; height: 132px;
+      margin: 8px auto 16px;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(158, 61, 87, 0.18);
     }
-    @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.025, 1.04); } }
-    @keyframes swish { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-12deg); } }
-    @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.1); } }
+    @media (prefers-reduced-motion: no-preference) {
+      .mascot { animation: bob 3.2s ease-in-out infinite; }
+    }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
     h1 {
       font-family: 'Baloo 2', sans-serif;
@@ -167,25 +167,7 @@
     <a class="brand" href="/">Qurek</a>
 
     <section class="hero">
-      <svg class="cat" viewBox="0 0 140 130" role="img" aria-label="A small grey cat, breathing and swishing its tail">
-        <g class="tail"><path d="M104 116 C128 112 130 86 118 80" fill="none" stroke="var(--cat)" stroke-width="10" stroke-linecap="round"/></g>
-        <g class="breathe">
-          <ellipse cx="70" cy="96" rx="38" ry="30" fill="var(--cat)"/>
-          <circle cx="70" cy="54" r="30" fill="var(--cat)"/>
-          <path d="M44 40 L46 14 L64 30 Z" fill="var(--cat)"/>
-          <path d="M96 40 L94 14 L76 30 Z" fill="var(--cat)"/>
-          <path d="M49 34 L50 21 L59 30 Z" fill="var(--sakura)"/>
-          <path d="M91 34 L90 21 L81 30 Z" fill="var(--sakura)"/>
-          <ellipse class="eye" cx="59" cy="54" rx="4" ry="5" fill="var(--cat-dark)"/>
-          <ellipse class="eye" cx="81" cy="54" rx="4" ry="5" fill="var(--cat-dark)"/>
-          <path d="M67 63 L73 63 L70 66 Z" fill="var(--sakura)"/>
-          <path d="M70 66 Q66 71 62 68 M70 66 Q74 71 78 68" fill="none" stroke="var(--cat-dark)" stroke-width="1.8" stroke-linecap="round"/>
-          <circle cx="52" cy="64" r="5" fill="var(--sakura)" opacity="0.55"/>
-          <circle cx="88" cy="64" r="5" fill="var(--sakura)" opacity="0.55"/>
-          <ellipse cx="56" cy="122" rx="11" ry="6" fill="var(--cat)"/>
-          <ellipse cx="84" cy="122" rx="11" ry="6" fill="var(--cat)"/>
-        </g>
-      </svg>
+      <img class="mascot" src="icon.png" width="132" height="132" alt="Acatability app icon: a happy white cat on sakura pink" />
 
       <h1>Journal with your best friend. Neither of you reads the other's.</h1>
       <p class="lede">A tiny daily journal for you and up to four friends. You each write privately. You just see that the others showed up today, and a small cat throws a party every time you do.</p>
