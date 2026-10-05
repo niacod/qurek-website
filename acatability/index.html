@@ -69,17 +69,34 @@
 
     .hero { text-align: center; padding: 24px 0 8px; }
 
-    .mascot {
+    .stage {
+      position: relative;
       display: block;
-      width: 132px; height: 132px;
-      margin: 8px auto 16px;
-      border-radius: 30px;
-      box-shadow: 0 10px 30px rgba(158, 61, 87, 0.18);
+      width: 180px; height: 180px;
+      margin: 0 auto;
+      background: none; border: 0; padding: 0;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
-    @media (prefers-reduced-motion: no-preference) {
-      .mascot { animation: bob 3.2s ease-in-out infinite; }
+    .stage:focus-visible { outline: 3px solid var(--sakura); outline-offset: 6px; border-radius: 24px; }
+    .stage canvas {
+      position: absolute;
+      left: -45%; top: -45%;
+      width: 190%; height: 190%;
+      pointer-events: none;
     }
-    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .hint { color: var(--muted); font-size: 13px; margin: 6px 0 10px; }
+    .swatches { display: flex; justify-content: center; gap: 10px; margin-bottom: 18px; }
+    .swatches button {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--c);
+      cursor: pointer;
+      padding: 0;
+    }
+    .swatches button[aria-pressed="true"] { border-color: var(--sakura-deep); transform: scale(1.15); }
+    .swatches button:focus-visible { outline: 3px solid var(--sakura); outline-offset: 2px; }
 
     h1 {
       font-family: 'Baloo 2', sans-serif;
@@ -167,7 +184,18 @@
     <a class="brand" href="/">Qurek</a>
 
     <section class="hero">
-      <img class="mascot" src="icon.png" width="132" height="132" alt="Acatability app icon: a happy white cat on sakura pink" />
+      <button class="stage" id="cat-stage" type="button" aria-label="The Acatability cat. Tap to make him do a trick">
+        <canvas id="cat" aria-hidden="true"></canvas>
+      </button>
+      <p class="hint" id="cat-hint">tap him</p>
+      <div class="swatches" role="group" aria-label="Pick a cat colour">
+        <button type="button" data-color="grey" style="--c:#9AA0A6" aria-label="Grey"></button>
+        <button type="button" data-color="orange" style="--c:#E08A3C" aria-label="Orange"></button>
+        <button type="button" data-color="white" style="--c:#F2EDE8" aria-label="White"></button>
+        <button type="button" data-color="black" style="--c:#3B3238" aria-label="Black"></button>
+        <button type="button" data-color="calico" style="--c:conic-gradient(#E08A3C 0 35%, #F2EDE8 0)" aria-label="Calico" aria-pressed="true"></button>
+        <button type="button" data-color="tabby" style="--c:repeating-linear-gradient(90deg,#B08256 0 5px,#946A42 5px 8px)" aria-label="Tabby"></button>
+      </div>
 
       <h1>Journal with your best friend. Neither of you reads the other's.</h1>
       <p class="lede">A tiny daily journal for you and up to four friends. You each write privately. You just see that the others showed up today, and a small cat throws a party every time you do.</p>
@@ -201,6 +229,35 @@
     </footer>
   </main>
 
+  <script src="cat.js"></script>
+  <script>
+    // The app's cat: tap for a trick, swatches change his colour, and he
+    // celebrates when someone joins the waitlist.
+    (function () {
+      var cat = new AcatCat(document.getElementById("cat"), { color: "calico" });
+      var tricks = ["wave", "clap", "jump", "purr"], next = 0;
+      var hint = document.getElementById("cat-hint");
+      document.getElementById("cat-stage").addEventListener("click", function () {
+        cat.play(tricks[next]);
+        next = (next + 1) % tricks.length;
+        hint.style.visibility = "hidden";
+      });
+      document.querySelectorAll(".swatches button").forEach(function (b) {
+        b.addEventListener("click", function () {
+          document.querySelectorAll(".swatches button").forEach(function (o) { o.setAttribute("aria-pressed", "false"); });
+          b.setAttribute("aria-pressed", "true");
+          cat.setColor(b.getAttribute("data-color"));
+          cat.play("jump");
+        });
+      });
+      setTimeout(function () { cat.play("wave"); next = 1; }, 1200);
+      window.addEventListener("message", function (e) {
+        if (typeof e.data !== "string" || e.data.indexOf("Tally.FormSubmitted") === -1) return;
+        cat.setMood("happy");
+        setTimeout(function () { cat.play("jump"); }, 700);
+      });
+    })();
+  </script>
   <script>
     // Paste the Tally form ID here (the end of tally.so/r/XXXXXX) to swap
     // the email button for the real sign-up form.
