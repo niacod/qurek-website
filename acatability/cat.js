@@ -130,9 +130,10 @@
         [0.60, -125], [0.74, -150], [1, 0]], f);
       p.headTilt = keyframes([[0, 0], [0.3, 6], [0.7, 6], [1, 0]], f);
     } else if (g === "clap") {
-      var arm = keyframes([[0, 0], [0.15, 92], [0.30, 62], [0.45, 92], [0.60, 62],
-        [0.75, 92], [0.90, 30], [1, 0]], f);
-      p.leftArmAngle = -arm; p.rightArmAngle = arm;
+      // A "yay" cheer: both arms thrown up and out, bouncing three times.
+      var arm = keyframes([[0, 0], [0.15, 140], [0.30, 115], [0.45, 140], [0.60, 115],
+        [0.75, 140], [0.90, 60], [1, 0]], f);
+      p.leftArmAngle = arm; p.rightArmAngle = -arm;
       var b = keyframes([[0, 0], [0.15, 1], [0.30, 0], [0.45, 1], [0.60, 0], [0.75, 1], [1, 0]], f);
       p.squashX = 1 + 0.02 * b; p.squashY = 1 - 0.015 * b;
     } else if (g === "jump") {
