@@ -217,6 +217,15 @@
     .button:focus-visible { outline: 3px solid var(--sakura); outline-offset: 3px; }
 
     #tally-wrap iframe { width: 100%; border: 0; min-height: 420px; }
+    /* The Tally form only has light-mode colours (dark grey text), so in
+       dark mode it sits on a pale card instead of the dark page. */
+    @media (prefers-color-scheme: dark) {
+      #tally-wrap:not(:empty) {
+        background: #FFF8FA;
+        border-radius: 16px;
+        padding: 12px 8px 4px;
+      }
+    }
 
     .fine { color: var(--muted); font-size: 13px; margin-top: 14px; }
     .fine a, footer a { color: var(--sakura-deep); }
