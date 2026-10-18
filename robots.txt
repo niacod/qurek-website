@@ -1,0 +1,6 @@
+# Everyone is welcome, search engines and AI assistants alike
+# (Googlebot, Bingbot, GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot...).
+User-agent: *
+Allow: /
+
+Sitemap: https://qurek.biz/sitemap.xml

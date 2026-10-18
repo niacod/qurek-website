@@ -13,8 +13,8 @@
     calico: { base: "#F2EDE8", shade: "#DDD2C9", feature: "#3A1020", patch: "#E08A3C" },
     tabby:  { base: "#B08256", shade: "#946A42", feature: "#3A1020", stripes: true }
   };
-  var SAKURA = "#FFB7C5";
-  var SAKURA_DEEP = "#9E3D57";
+  var SAKURA = "#EE9AB0";
+  var SAKURA_DEEP = "#A3385C";
   var STRIPE = "rgba(107, 74, 46, 0.55)";
 
   var DURATION = { wave: 1.4, clap: 1.2, jump: 0.9, purr: 1.6 };
@@ -293,28 +293,39 @@
       }
     }
 
-    // Blush, always on: part of the plush look.
+    // Face (CatView.drawFeatures, the 16 Oct "new face"): blush, eyes
+    // with a highlight, pink nose, a small smile and whiskers.
     ctx.save();
-    ctx.globalAlpha *= pose.blushOpacity;
-    ctx.fillStyle = SAKURA;
-    [19.2, 80.8].forEach(function (x) { ellipse(ctx, x - 13.1, 60, 26.2, 15.4); ctx.fill(); });
+    ctx.globalAlpha *= 0.6 * pose.blushOpacity;
+    ctx.fillStyle = "#F2A9BC";
+    [23.2, 76.8].forEach(function (x) { ellipse(ctx, x - 7.44, 75.13 - 4.52, 14.89, 9.04); ctx.fill(); });
     ctx.restore();
 
-    // Eyes; two sets only while a mood change cross-fades.
-    var eyeY = 56.2;
+    var eyeY = 63.82;
     eyes.forEach(function (e) {
       var mood = e[0];
       ctx.save();
       ctx.globalAlpha *= e[1];
-      [35, 65].forEach(function (x) {
+      [[33.62, 35.11], [66.38, 67.86]].forEach(function (xs) {
+        var x = xs[0];
         if (mood === "neutral") {
-          var h = 11 * pose.eyeOpenness;
-          ellipse(ctx, x - 5, eyeY - h / 2, 10, h);
+          var h = 12.82 * pose.eyeOpenness;
+          ellipse(ctx, x - 4.84, eyeY - h / 2, 9.68, h);
           ctx.fillStyle = c.feature; ctx.fill();
+          ctx.save();
+          ctx.globalAlpha *= pose.eyeOpenness;
+          ellipse(ctx, xs[1] - 1.64, 61.55 - 1.64, 3.28, 3.28);
+          ctx.fillStyle = "#FFFFFF"; ctx.fill();
+          ctx.restore();
+        } else if (mood === "sleepy") {
+          ctx.beginPath();
+          ctx.moveTo(x - 8.93, 63.82);
+          ctx.quadraticCurveTo(x, 70.61, x + 8.93, 63.82);
+          ctx.strokeStyle = c.feature; ctx.lineWidth = 2.38; ctx.lineCap = "round"; ctx.stroke();
         } else {
           ctx.beginPath();
-          ctx.moveTo(x - 11.9, eyeY);
-          ctx.quadraticCurveTo(x, eyeY - (mood === "happy" ? 16 : -5), x + 11.9, eyeY);
+          ctx.moveTo(x - 7.44, 65.32);
+          ctx.quadraticCurveTo(x, 57.78, x + 7.44, 65.32);
           ctx.strokeStyle = c.feature; ctx.lineWidth = 5.4; ctx.lineCap = "round"; ctx.stroke();
         }
       });
@@ -322,9 +333,27 @@
     });
 
     ctx.beginPath();
-    ctx.moveTo(44.6, 70.8); ctx.lineTo(55.4, 70.8); ctx.lineTo(50, 76.9);
+    ctx.moveTo(46.28, 71.36); ctx.lineTo(53.72, 71.36); ctx.lineTo(50, 75.88);
     ctx.closePath();
-    ctx.fillStyle = SAKURA_DEEP; ctx.fill();
+    ctx.fillStyle = "#E58AA2"; ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(50, 77.39); ctx.lineTo(50, 79.65);
+    ctx.bezierCurveTo(47.77, 83.42, 42.56, 83.42, 41.07, 80.4);
+    ctx.moveTo(50, 79.65);
+    ctx.bezierCurveTo(52.23, 83.42, 57.44, 83.42, 58.93, 80.4);
+    ctx.strokeStyle = c.feature; ctx.lineWidth = 1.79; ctx.lineCap = "round"; ctx.stroke();
+    ctx.restore();
+
+    // Whiskers poke out past the head (the canvas has overflow room).
+    ctx.save();
+    ctx.globalAlpha *= 0.35;
+    ctx.beginPath();
+    [[9.8, 68.34, -5.08, 65.32], [9.8, 72.86, -4.34, 75.13],
+     [90.2, 68.34, 105.08, 65.32], [90.2, 72.86, 104.34, 75.13]].forEach(function (w) {
+      ctx.moveTo(w[0], w[1]); ctx.lineTo(w[2], w[3]);
+    });
+    ctx.strokeStyle = c.feature; ctx.lineWidth = 1.49; ctx.lineCap = "round"; ctx.stroke();
     ctx.restore();
   }
 
@@ -368,13 +397,27 @@
     if (pose.petalAge !== null) drawPetals(ctx, pose.petalAge);
   }
 
+  // Sign-in's two cats touching heads (CatPose.nuzzling): the head leans
+  // over and presses in every 2.6 s, ears easing out.
+  var NUZZLE_PERIOD = 2.6;
+  function nuzzling(t) {
+    var press = keyframes([[0, 0], [0.12, 1], [0.32, 1], [0.48, 0], [1, 0]], (t % NUZZLE_PERIOD) / NUZZLE_PERIOD);
+    var p = rest();
+    p.headTilt = -12 - 4 * press;
+    p.leftEarAngle = -6 * press;
+    p.rightEarAngle = 6 * press;
+    p.blushOpacity = 0.7 + 0.3 * press;
+    return p;
+  }
+
   // MARK: The live cat
 
   function Cat(canvas, opts) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.color = opts.color || "calico";
-    this.mood = "neutral";
+    this.mood = opts.mood || "neutral";
+    this.nuzzle = !!opts.nuzzle;
     this.seed = (Math.random() * 4294967296) >>> 0;
     this.start = performance.now();
     this.celebrateStart = null;
@@ -437,6 +480,7 @@
         eyes = [[this.fadeFrom, 1 - fade], [this.mood, fade]];
       }
     }
+    if (this.nuzzle) pose = compose(pose, nuzzling(this.still ? 0 : (now - this.start) / 1000));
     draw(this.ctx, this.px, pose, eyes, this.color);
   };
 

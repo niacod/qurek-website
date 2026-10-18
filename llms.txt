@@ -1,0 +1,50 @@
+# Acatability
+
+> Acatability is an iPhone app for small daily mental-health habits you keep with friends, with a cat who cheers you on. Free on your own. Made by Qurek Limited (England and Wales).
+
+An iPhone app for small daily mental-health habits kept with friends. Each day you check in with a private journal, a few things you're grateful for and your journalling or meditation minutes. Friends in your pact see that you showed up, plus only what you choose to share. A cat cheers you on. Free on your own; one plan brings up to four friends in, and they join free.
+
+## Key facts
+
+- Platform: iPhone (iOS). Not on Android.
+- Launch: Sunday 1 November 2026 on the App Store. Waitlist: https://qurek.biz/acatability/#join
+- Daily check-in (about 5 minutes): private journal, things you're grateful for, journalling or meditation minutes, optional intention and prompt.
+- Pact: you plus up to 4 friends (5 in total). Friends join free with a 6-character invite code. They see that you checked in, plus only what you choose to share. Journals are never shared.
+- The cat: 6 colours, you name it; it cheers, meows, purrs, brings gifts (30 to find) and never tells you off.
+- Also: free week/month/year recaps, history with search and calendar, home-screen widget, one optional gentle reminder a day.
+- Price: Solo free for good. Pact £4.99/month or £34.99/year. Founding Pact £40 one payment, on sale until 31 December 2026. 14-day free pact trial, no card.
+- Privacy: no ads, no tracking, no analytics. Data stored in London (UK). Delete your account any time.
+- Not a medical or therapy app; makes no health claims.
+- Contact: info@qurek.biz
+
+## Pages
+
+- [Home](https://qurek.biz/acatability/)
+- [How it works](https://qurek.biz/acatability/how-it-works/)
+- [Pricing](https://qurek.biz/acatability/pricing/)
+- [FAQ](https://qurek.biz/acatability/faq/)
+- [Press kit](https://qurek.biz/acatability/press/)
+- [Privacy policy](https://niacod.github.io/acatability-legal/privacy)
+- [Terms of use](https://niacod.github.io/acatability-legal/terms)
+
+## Guides
+
+- [How to keep a daily habit with a friend](https://qurek.biz/acatability/guides/habit-with-a-friend/)
+- [A 5-minute daily check-in for your mind](https://qurek.biz/acatability/guides/five-minute-check-in/)
+- [What to write in a gratitude journal on a hard day](https://qurek.biz/acatability/guides/gratitude-on-hard-days/)
+
+## FAQ
+
+- **What is Acatability?** An iPhone app for small daily mental-health habits you keep with friends. You check in each day with a private journal, a few good things and your minutes. Friends see you showed up. A cat cheers you on.
+- **Is Acatability free?** Yes, on your own, for good. Check-ins, your whole history, recaps and your cat are free. A pact with friends is £4.99 a month or £34.99 a year, with a 14-day free trial.
+- **How many friends can join my pact?** Up to 4, so 5 of you in total. Friends join with a 6-character invite code.
+- **Do my friends have to pay?** No. One person pays. Everyone they invite joins free.
+- **Can my friends read my journal?** No. Your journal is never shown to anyone. Friends see that you checked in, plus only what you choose to share, like your gratitude or minutes.
+- **What do I do each day?** Check in: write a line or two, list a few things you're grateful for, and tap how many minutes you journalled or meditated. It takes about 5 minutes.
+- **What if I miss a day?** Nothing bad happens. Your total days stay, and your cat never tells you off. Just check in the next day.
+- **Does it send notifications?** Only if you say yes. Then your cat says hi once a day, only on days you haven't checked in. You can also hear when a friend checks in: just their name.
+- **Is Acatability therapy or a medical app?** No. It's a daily habit app, not a treatment. If you're struggling, please talk to a doctor. In the UK and Ireland you can call Samaritans free on 116 123.
+- **Is it on Android?** Not yet. Acatability is made for iPhone.
+- **When does Acatability launch?** Sunday 1 November 2026, on the App Store. Join the waitlist and we'll email you the link.
+- **Where is my data kept?** On servers in London. No ads, no tracking, no analytics. You can delete your account any time in the app.
+- **Who makes Acatability?** Qurek Limited, a small company in England and Wales. Say hi at info@qurek.biz.
