@@ -7,7 +7,7 @@ An iPhone app for small daily mental-health habits kept with friends. Each day y
 ## Key facts
 
 - Platform: iPhone (iOS). Not on Android.
-- Launch: Sunday 1 November 2026 on the App Store. Waitlist: https://qurek.biz/acatability/#join
+- Launch: coming soon to the App Store (date not announced yet). Waitlist: https://qurek.biz/acatability/#join
 - Daily check-in (about 5 minutes): private journal, things you're grateful for, journalling or meditation minutes, optional intention and prompt.
 - Pact: you plus up to 4 friends (5 in total). Friends join free with a 6-character invite code. They see that you checked in, plus only what you choose to share. Journals are never shared.
 - The cat: 6 colours, you name it; it cheers, meows, purrs, brings gifts (30 to find) and never tells you off.
@@ -45,6 +45,6 @@ An iPhone app for small daily mental-health habits kept with friends. Each day y
 - **Does it send notifications?** Only if you say yes. Then your cat says hi once a day, only on days you haven't checked in. You can also hear when a friend checks in: just their name.
 - **Is Acatability therapy or a medical app?** No. It's a daily habit app, not a treatment. If you're struggling, please talk to a doctor. In the UK and Ireland you can call Samaritans free on 116 123.
 - **Is it on Android?** Not yet. Acatability is made for iPhone.
-- **When does Acatability launch?** Sunday 1 November 2026, on the App Store. Join the waitlist and we'll email you the link.
+- **When does Acatability launch?** Soon. We're on the final checks. Join the waitlist and we'll email you the App Store link on launch day.
 - **Where is my data kept?** On servers in London. No ads, no tracking, no analytics. You can delete your account any time in the app.
 - **Who makes Acatability?** Qurek Limited, a small company in England and Wales. Say hi at info@qurek.biz.

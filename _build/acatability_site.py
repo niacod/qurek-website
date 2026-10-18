@@ -8,7 +8,9 @@ import json, os, html
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://qurek.biz"
 TODAY = "2026-10-18"
-LAUNCH = "Sunday 1 November"
+# The launch date isn't set yet (owner, 18 Oct). When it is, put it here
+# and in the four places that say "coming soon".
+LAUNCH = "coming soon"
 
 def esc(s): return html.escape(s, quote=True)
 
@@ -175,7 +177,7 @@ FAQS = [
     ("Does it send notifications?", "Only if you say yes. Then your cat says hi once a day, only on days you haven't checked in. You can also hear when a friend checks in: just their name."),
     ("Is Acatability therapy or a medical app?", "No. It's a daily habit app, not a treatment. If you're struggling, please talk to a doctor. In the UK and Ireland you can call Samaritans free on 116 123."),
     ("Is it on Android?", "Not yet. Acatability is made for iPhone."),
-    ("When does Acatability launch?", f"{LAUNCH} 2026, on the App Store. Join the waitlist and we'll email you the link."),
+    ("When does Acatability launch?", "Soon. We're on the final checks. Join the waitlist and we'll email you the App Store link on launch day."),
     ("Where is my data kept?", "On servers in London. No ads, no tracking, no analytics. You can delete your account any time in the app."),
     ("Who makes Acatability?", "Qurek Limited, a small company in England and Wales. Say hi at info@qurek.biz."),
 ]
@@ -346,7 +348,7 @@ home_body = f"""
           <a class="button" href="#join">Join the waitlist</a>
           <a class="button ghost" href="/acatability/how-it-works/">See how it works</a>
         </div>
-        <p style="margin-top:16px"><span class="tag">{sakura()}iPhone · launching {LAUNCH}</span></p>
+        <p style="margin-top:16px"><span class="tag">{sakura()}Coming soon to iPhone</span></p>
       </div>
     </section>
 
@@ -749,7 +751,7 @@ press_body = f"""
           <dl class="facts">
             <dt>Name</dt><dd>Acatability</dd>
             <dt>Platform</dt><dd>iPhone</dd>
-            <dt>Launch</dt><dd>{LAUNCH} 2026</dd>
+            <dt>Launch</dt><dd>Coming soon to the App Store</dd>
             <dt>Price</dt><dd>Free on your own. Pact for up to 5: £4.99/month or £34.99/year. Founding Pact £40 once, until 31 Dec 2026.</dd>
             <dt>Privacy</dt><dd>Journals are never shared. No ads, no tracking. Data stored in London.</dd>
             <dt>Made by</dt><dd>Qurek Limited, England and Wales</dd>
@@ -799,7 +801,7 @@ write("llms.txt", f"""# Acatability
 ## Key facts
 
 - Platform: iPhone (iOS). Not on Android.
-- Launch: {LAUNCH} 2026 on the App Store. Waitlist: {BASE}/acatability/#join
+- Launch: coming soon to the App Store (date not announced yet). Waitlist: {BASE}/acatability/#join
 - Daily check-in (about 5 minutes): private journal, things you're grateful for, journalling or meditation minutes, optional intention and prompt.
 - Pact: you plus up to 4 friends (5 in total). Friends join free with a 6-character invite code. They see that you checked in, plus only what you choose to share. Journals are never shared.
 - The cat: 6 colours, you name it; it cheers, meows, purrs, brings gifts (30 to find) and never tells you off.
