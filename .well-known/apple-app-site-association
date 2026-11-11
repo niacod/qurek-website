@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "3YP2GRDNH3.com.niatuyakova.Acatability"
+        ],
+        "components": [
+          {
+            "/": "/join/*",
+            "comment": "Invite links"
+          }
+        ]
+      }
+    ]
+  }
+}

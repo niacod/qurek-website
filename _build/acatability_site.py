@@ -776,6 +776,64 @@ write("acatability/press/index.html", page(
     "Acatability press kit: one-line description, facts, prices, launch date, app icon and screenshots. Contact info@qurek.biz.",
     press_body, ld=[APP, crumbs_ld([("/acatability/", "Acatability"), ("/acatability/press/", "Press kit")])]))
 
+# ---------------------------------------------------------------- 404 + invite join page (P37-01, P38-01)
+# GitHub Pages serves 404.html for every unknown path, so /join/123456 lands
+# here. A tiny script reads the code from the path. The app opens the same
+# link itself when installed (apple-app-site-association). The "Get the app"
+# tap also copies "acatability-join:<code>" to the clipboard (P38-01), so the
+# app can read it after install without a clipboard-read prompt (P38-02);
+# keep this page free of plans, payment and price (E-03).
+APP_STORE_URL = "https://apps.apple.com/app/id6805119917"
+join_body = f"""
+    <div class="wrap narrow">
+      <div class="card tinted" id="join-card" style="text-align:center;margin-top:32px" hidden>
+        <h1 class="h3">A friend invited you</h1>
+        <p class="lede">Get the app, then enter this code in it.</p>
+        <p id="join-code" style="font-size:44px;font-weight:900;letter-spacing:.14em;margin:14px 0" aria-label="Invite code"></p>
+        <div class="cta-row" style="justify-content:center"><a class="button" id="get-app-button" href="{APP_STORE_URL}">Get the app</a></div>
+        <p class="muted" style="margin-top:12px">We copy your code so the app can fill it in.</p>
+      </div>
+      <div class="card" id="lost-card" style="text-align:center;margin-top:32px" hidden>
+        <h1 class="h3">Page not found</h1>
+        <p>That page isn't here.</p>
+        <div class="cta-row" style="justify-content:center"><a class="button" href="/acatability/">Go to Acatability</a></div>
+      </div>
+    </div>
+    <script>
+      (function () {{
+        var m = location.pathname.match(/^\\/join\\/(\\d{{6}})\\/?$/);
+        if (m) {{
+          var code = m[1];
+          document.getElementById("join-code").textContent = code;
+          document.getElementById("join-card").hidden = false;
+          document.title = "Join on Acatability";
+          document.getElementById("get-app-button").addEventListener("click", function (e) {{
+            e.preventDefault();
+            var go = function () {{ location.href = "{APP_STORE_URL}"; }};
+            if (navigator.clipboard && navigator.clipboard.writeText) {{
+              navigator.clipboard.writeText("acatability-join:" + code).then(go, go);
+            }} else {{
+              go();
+            }}
+          }});
+        }} else {{
+          document.getElementById("lost-card").hidden = false;
+        }}
+      }})();
+    </script>"""
+_join = page("/404.html", "Join on Acatability",
+             "Get the Acatability app, then enter your friend's invite code.", join_body)
+# A page everyone can land on must not be indexed or claim a canonical URL.
+_join = _join.replace('  <link rel="canonical" href="%s/404.html" />\n' % BASE,
+                      '  <meta name="robots" content="noindex" />\n')
+write("404.html", _join)
+
+# Apple fetches this without redirects; it needs .nojekyll to be published.
+write(".well-known/apple-app-site-association", json.dumps(
+    {"applinks": {"details": [{"appIDs": ["3YP2GRDNH3.com.niatuyakova.Acatability"],
+                               "components": [{"/": "/join/*", "comment": "Invite links"}]}]}}, indent=2) + "\n")
+write(".nojekyll", "")
+
 # ---------------------------------------------------------------- robots, sitemap, llms.txt
 urls = ["/", "/acatability/", "/acatability/how-it-works/", "/acatability/pricing/", "/acatability/faq/",
         "/acatability/guides/"] + [f"/acatability/guides/{s}/" for s, _, _ in GUIDES] + ["/acatability/press/"]
