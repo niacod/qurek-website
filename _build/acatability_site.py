@@ -2,7 +2,7 @@
 llms.txt. Edit the words here, then run from the repo root:
     python3 _build/acatability_site.py
 (GitHub Pages skips folders starting with "_", so this file is not published.)
-Styles live in acatability/site.css, the cat in acatability/cat.js."""
+Styles live in acatability/site.css (the app's Macaron Stationery look), the cat in acatability/cat.js."""
 import json, os, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,13 +14,15 @@ LAUNCH = "coming soon"
 
 def esc(s): return html.escape(s, quote=True)
 
-SAKURA_DEF = """<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="sakura" viewBox="0 0 24 24"><g fill="currentColor">""" + "".join(
-    f'<path transform="rotate({a} 12 12)" d="M12 12C9.4 10.2 8.5 6.6 10.2 3.9L12 5.3l1.8-1.4c1.7 2.7.8 6.3-1.8 8.1z"/>' for a in (0, 72, 144, 216, 288)
-) + """</g><circle cx="12" cy="12" r="1.7" fill="#fff" opacity=".85"/></symbol></defs></svg>"""
+SPARK_DEF = """<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="spark" viewBox="0 0 24 24"><path d="M12 2C12.8 8 16 11.2 22 12 16 12.8 12.8 16 12 22 11.2 16 8 12.8 2 12 8 11.2 11.2 8 12 2Z" fill="#FFE08A" stroke="#46203A" stroke-width="1.6" stroke-linejoin="round"/></symbol></defs></svg>"""
 
-def sakura(cls="sakura"): return f'<svg class="{cls}" aria-hidden="true"><use href="#sakura"/></svg>'
+def spark(cls="spark-i"): return f'<svg class="{cls}" aria-hidden="true"><use href="#spark"/></svg>'
 
-PAW = '<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="16" rx="5" ry="4"/><circle cx="6" cy="10" r="2"/><circle cx="10" cy="6.5" r="2"/><circle cx="14" cy="6.5" r="2"/><circle cx="18" cy="10" r="2"/></svg>'
+def ui(name, cls="", w=None):
+    c = f' class="{cls}"' if cls else ""
+    return f'<img{c} src="/acatability/img/ui/{name}.svg" alt="" aria-hidden="true"' + (f' width="{w}"' if w else "") + " />"
+
+PAW = '<img src="/acatability/img/ui/paw.svg" alt="" width="26" height="26" />'
 
 ICON = {
     "journal": '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h4"/>',
@@ -38,7 +40,14 @@ ICON = {
     "press": '<rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h5"/>',
 }
 
+# One pastel per area, like the app: journal/heart = strawberry, minutes = sky,
+# friends/bell = lavender, gifts/star = butter, privacy = mint.
+TONE = {"journal": "", "heart": "", "clock": "sky", "friends": "lav", "gift": "butter", "star": "butter",
+        "widget": "sky", "bell": "lav", "lock": "mint", "book": "peach", "tag": "butter", "question": "lav", "press": "sky"}
+
 def icon(name, cls="icon"):
+    tone = TONE.get(name, "")
+    if tone: cls += " " + tone
     return f'<div class="{cls}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICON[name]}</svg></div>'
 
 ORG = {"@type": "Organization", "@id": f"{BASE}/#org", "name": "Qurek Limited", "url": f"{BASE}/",
@@ -83,8 +92,8 @@ def page(path, title, desc, body, ld=(), current=None, og_type="website", script
   <title>{esc(title)}</title>
   <meta name="description" content="{esc(desc)}" />
   <link rel="canonical" href="{url}" />
-  <meta name="theme-color" content="#FBF0EE" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#2B1E26" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#FFF6F1" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#2A1622" media="(prefers-color-scheme: dark)" />
   <meta property="og:site_name" content="Acatability" />
   <meta property="og:title" content="{esc(title)}" />
   <meta property="og:description" content="{esc(desc)}" />
@@ -98,18 +107,17 @@ def page(path, title, desc, body, ld=(), current=None, og_type="website", script
   <link rel="apple-touch-icon" href="/acatability/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/acatability/site.css" />
   <script type="application/ld+json">
 {json.dumps(graph, indent=2, ensure_ascii=False)}
   </script>
 </head>
 <body>
-  {SAKURA_DEF}
-  <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  {SPARK_DEF}
   <header class="site-head">
     <div class="wrap">
-      <a class="logo" href="/acatability/"><img src="/acatability/icon.png" width="36" height="36" alt="" /><picture><source srcset="/acatability/img/wordmark-dark.png" media="(prefers-color-scheme: dark)" /><img class="logo-word" src="/acatability/img/wordmark-light.png" width="708" height="138" alt="Acatability" /></picture></a>
+      <a class="logo" href="/acatability/"><img src="/acatability/icon.png" width="36" height="36" alt="" /><span class="logo-word">Acatability</span></a>
       <ul class="nav">
 {nav}
       </ul>
@@ -117,7 +125,6 @@ def page(path, title, desc, body, ld=(), current=None, og_type="website", script
   </header>
 
   <main>
-    <div class="blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 {body}
   </main>
 
@@ -151,19 +158,15 @@ def phone(name, alt, eager=False):
     lazy = "" if eager else ' loading="lazy"'
     return f'<img class="phone" src="/acatability/img/{name}.jpg" width="600" height="1300" alt="{esc(alt)}"{lazy} />'
 
-def heading(text, sub=None, eyebrow=None, ribbon=False, hid=None):
+def heading(text, sub=None, eyebrow=None, hid=None):
     idattr = f' id="{hid}"' if hid else ""
     eb = f'<p class="eyebrow">{eyebrow}</p>' if eyebrow else ""
-    if ribbon:
-        h = f'<h2{idattr} class="ribbon-wrap"><span class="ribbon">{sakura()}{text}{sakura()}</span></h2>'
-    else:
-        h = f'<h2{idattr}>{text}</h2>'
     s = f'<p class="lede">{sub}</p>' if sub else ""
-    return f'<div class="section-head center">{eb}{h}{s}</div>'
+    return f'<div class="section-head center">{eb}<h2{idattr}>{text}</h2>{s}</div>'
 
 def page_title(icon_name, text):
     return (f'<div class="page-title">{icon(icon_name, "tile")}<h1>{text}</h1>'
-            f'<span class="sprinkle">{sakura()}{sakura()}</span></div>')
+            f'{ui("bow", "bow", 38)}</div>')
 
 # ---------------------------------------------------------------- FAQ data
 FAQS = [
@@ -321,7 +324,7 @@ PRICE_CARDS = """<div class="grid three">
             <p class="price">£4.99<small> / month</small></p>
             <p class="muted">Or £34.99 a year. You + 4 friends, who join free.</p>
           </div>
-          <div class="card price-card">
+          <div class="card price-card gold">
             <h3>Founding Pact</h3>
             <p class="price">£40<small> once</small></p>
             <p class="muted">One payment, yours for good. On sale until 31 Dec 2026.</p>
@@ -332,23 +335,31 @@ PRICE_CARDS = """<div class="grid three">
 home_body = f"""
     <section class="hero">
       <div class="wrap">
-        <h1 class="sr-only">Acatability</h1>
-        <picture>
-          <source srcset="/acatability/img/wordmark-dark.png" media="(prefers-color-scheme: dark)" />
-          <img class="wordmark-img" src="/acatability/img/wordmark-light.png" width="708" height="138" alt="" fetchpriority="high" />
-        </picture>
-        <div class="duo" role="img" aria-label="Two cats touching heads">
-          <div class="duo-cat right"><canvas id="cat-r"></canvas></div>
-          <div class="duo-cat left"><canvas id="cat-l"></canvas></div>
-          <svg class="duo-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.3-9.2C1.4 8.4 3.6 5 7 5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg>
+        <div class="hero-card">
+          <div class="bunting" aria-hidden="true"></div>
+          {ui("sparkle", "spark", 18)}{ui("sparkle", "spark", 14)}{ui("sparkle", "spark", 14)}
+          <h1 class="sticker">Acatability</h1>
+          <p class="h1">Tiny habits for your mind. Kept with friends.</p>
+          <p class="lede">5 calm minutes a day: journal, gratitude, meditation. Your friends see you showed up. A cat cheers you on.</p>
+          <div class="cta-row">
+            <a class="button" href="#join">Join the waitlist</a>
+            <a class="button ghost" href="/acatability/how-it-works/">See how it works</a>
+          </div>
+          <div class="scene">
+            <div class="scene-in">
+              <div class="duo-wrap">
+                <div class="cushion" aria-hidden="true"></div>
+                <div class="duo" role="img" aria-label="Two cats touching heads">
+                  <div class="duo-cat right"><canvas id="cat-r"></canvas></div>
+                  <div class="duo-cat left"><canvas id="cat-l"></canvas></div>
+                  {ui("heart", "duo-heart")}
+                </div>
+                <p class="speech">Meow! I saved you a spot.</p>
+              </div>
+            </div>
+            <span class="die">{ui("paw")}Coming soon to iPhone</span>
+          </div>
         </div>
-        <p class="h1">Tiny habits for your mind. Kept with friends.</p>
-        <p class="lede">5 calm minutes a day: journal, gratitude, meditation. Your friends see you showed up. A cat cheers you on.</p>
-        <div class="cta-row">
-          <a class="button" href="#join">Join the waitlist</a>
-          <a class="button ghost" href="/acatability/how-it-works/">See how it works</a>
-        </div>
-        <p style="margin-top:16px"><span class="tag">{sakura()}Coming soon to iPhone</span></p>
       </div>
     </section>
 
@@ -381,8 +392,8 @@ home_body = f"""
 
     <section aria-labelledby="cat-title">
       <div class="wrap narrow">
-        <div class="card tinted center meet">
-          {heading("Meet your cat", sub="6 colours. You pick the name. Go on, tap.", ribbon=True, hid="cat-title")}
+        <div class="card washi center meet">
+          {heading("Meet your cat", sub="6 colours. You pick the name. Go on, tap.", hid="cat-title")}
           <div class="stage-wrap">
             <p class="bubble" id="bubble" aria-live="polite">Meow!</p>
             <button class="stage" id="cat-stage" type="button" aria-label="The Acatability cat. Tap for a trick">
@@ -423,7 +434,7 @@ home_body = f"""
 
     <section aria-labelledby="private-title">
       <div class="wrap narrow">
-        <div class="card tinted">
+        <div class="card mint">
           {icon("lock")}
           <h2 id="private-title">Your words stay yours</h2>
           <p class="lede">Friends see that you showed up. Never what you wrote.</p>
@@ -530,10 +541,10 @@ write("acatability/how-it-works/index.html", page(
     current="/acatability/how-it-works/"))
 
 # ---------------------------------------------------------------- Pricing
-def price_card(name, price, small, note, ticks, best=False, tag=None):
+def price_card(name, price, small, note, ticks, best=False, tag=None, gold=False):
     t = "".join(f"<li>{x}</li>" for x in ticks)
     tg = f'<span class="tag ribbon-tag">{tag}</span>' if tag else ""
-    return f"""<div class="card price-card{' best' if best else ''}">{tg}<h2 class="h3">{name}</h2><p class="price">{price}<small>{small}</small></p><p class="muted">{note}</p><ul class="ticks">{t}</ul></div>"""
+    return f"""<div class="card price-card{' best' if best else ''}{' gold' if gold else ''}">{tg}<h2 class="h3">{name}</h2><p class="price">{price}<small>{small}</small></p><p class="muted">{note}</p><ul class="ticks">{t}</ul></div>"""
 
 pricing_faq = [
     ("Is there a free trial?", "Yes. Every new account can try a pact free for 14 days. No card needed, and it never turns into a paid plan by itself."),
@@ -552,10 +563,10 @@ pricing_body = f"""
         <div class="grid three">
           {price_card("Solo", "Free", "", "For good.", ["Daily check-ins", "Your whole history, search and calendar", "Week, month and year recaps", "Your cat and its gifts"])}
           {price_card("Pact", "£4.99", " / month", "Or £34.99 a year (save 42%).", ["You + up to 4 friends", "Friends join free", "See who checked in, send paws", "Days you all checked in"], best=True, tag="For friends")}
-          {price_card("Founding Pact", "£40", " once", "On sale until 31 December 2026.", ["Everything in Pact", "One payment, no renewal", "Yours for good"])}
+          {price_card("Founding Pact", "£40", " once", "On sale until 31 December 2026.", ["Everything in Pact", "One payment, no renewal", "Yours for good"], gold=True)}
         </div>
-        <div class="card tinted" style="margin-top:20px">
-          <h2 class="h3">{sakura()} Try a pact free for 14 days</h2>
+        <div class="card lav" style="margin-top:20px">
+          <h2 class="h3">{spark()} Try a pact free for 14 days</h2>
           <p class="muted">Every new account gets it. No card. It never turns into a paid plan by itself.</p>
         </div>
       </div>
@@ -613,7 +624,7 @@ def guide(slug, title, desc, short, sections, tip):
         <p class="meta">By the Acatability team · {TODAY[8:]} October 2026 · 3 min read</p>
 {sections}
         <div class="note card tinted">
-          <h2 class="h3">{sakura()} How Acatability helps</h2>
+          <h2 class="h3">{spark()} How Acatability helps</h2>
           <p>{tip}</p>
           <p><a href="/acatability/how-it-works/">See how it works</a></p>
         </div>
@@ -705,7 +716,7 @@ guide("gratitude-on-hard-days", "What to write in a gratitude journal on a hard 
         <p>A journal is not a replacement for real support. Talk to someone you trust or a doctor. In the UK and Ireland, Samaritans are free on 116 123, any time.</p>""",
       "Each Acatability check-in has a space for a few good things, and the app reminds you: notice the good, even on rough days. Your pact can see your gratitude only if you choose to share it.")
 
-cards = "\n".join(f"""          <a class="card guide-card" href="/acatability/guides/{s}/">{sakura()}<h2 class="h3">{esc(t)}</h2><p class="muted">3 min read</p></a>""" for s, t, _ in GUIDES)
+cards = "\n".join(f"""          <a class="card guide-card" href="/acatability/guides/{s}/">{spark()}<h2 class="h3">{esc(t)}</h2><p class="muted">3 min read</p></a>""" for s, t, _ in GUIDES)
 guides_body = f"""
     <div class="wrap">
       <p class="crumbs"><a href="/acatability/">Home</a> · Guides</p>
@@ -789,7 +800,7 @@ join_body = f"""
       <div class="card tinted" id="join-card" style="text-align:center;margin-top:32px" hidden>
         <h1 class="h3">A friend invited you</h1>
         <p class="lede">Get the app, then enter this code in it.</p>
-        <p id="join-code" style="font-size:44px;font-weight:900;letter-spacing:.14em;margin:14px 0" aria-label="Invite code"></p>
+        <p id="join-code" class="join-code" aria-label="Invite code"></p>
         <div class="cta-row" style="justify-content:center"><a class="button" id="get-app-button" href="{APP_STORE_URL}">Get the app</a></div>
         <p class="muted" style="margin-top:12px">We copy your code so the app can fill it in.</p>
       </div>

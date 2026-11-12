@@ -6,8 +6,8 @@
   <title>Acatability: mental-health habits with friends, and a cat</title>
   <meta name="description" content="Acatability is an iPhone app for small daily mental-health habits you keep with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own." />
   <link rel="canonical" href="https://qurek.biz/acatability/" />
-  <meta name="theme-color" content="#FBF0EE" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#2B1E26" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#FFF6F1" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#2A1622" media="(prefers-color-scheme: dark)" />
   <meta property="og:site_name" content="Acatability" />
   <meta property="og:title" content="Acatability: mental-health habits with friends, and a cat" />
   <meta property="og:description" content="Acatability is an iPhone app for small daily mental-health habits you keep with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own." />
@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" href="/acatability/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/acatability/site.css" />
   <script type="application/ld+json">
 {
@@ -103,11 +103,10 @@
   </script>
 </head>
 <body>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="sakura" viewBox="0 0 24 24"><g fill="currentColor"><path transform="rotate(0 12 12)" d="M12 12C9.4 10.2 8.5 6.6 10.2 3.9L12 5.3l1.8-1.4c1.7 2.7.8 6.3-1.8 8.1z"/><path transform="rotate(72 12 12)" d="M12 12C9.4 10.2 8.5 6.6 10.2 3.9L12 5.3l1.8-1.4c1.7 2.7.8 6.3-1.8 8.1z"/><path transform="rotate(144 12 12)" d="M12 12C9.4 10.2 8.5 6.6 10.2 3.9L12 5.3l1.8-1.4c1.7 2.7.8 6.3-1.8 8.1z"/><path transform="rotate(216 12 12)" d="M12 12C9.4 10.2 8.5 6.6 10.2 3.9L12 5.3l1.8-1.4c1.7 2.7.8 6.3-1.8 8.1z"/><path transform="rotate(288 12 12)" d="M12 12C9.4 10.2 8.5 6.6 10.2 3.9L12 5.3l1.8-1.4c1.7 2.7.8 6.3-1.8 8.1z"/></g><circle cx="12" cy="12" r="1.7" fill="#fff" opacity=".85"/></symbol></defs></svg>
-  <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="spark" viewBox="0 0 24 24"><path d="M12 2C12.8 8 16 11.2 22 12 16 12.8 12.8 16 12 22 11.2 16 8 12.8 2 12 8 11.2 11.2 8 12 2Z" fill="#FFE08A" stroke="#46203A" stroke-width="1.6" stroke-linejoin="round"/></symbol></defs></svg>
   <header class="site-head">
     <div class="wrap">
-      <a class="logo" href="/acatability/"><img src="/acatability/icon.png" width="36" height="36" alt="" /><picture><source srcset="/acatability/img/wordmark-dark.png" media="(prefers-color-scheme: dark)" /><img class="logo-word" src="/acatability/img/wordmark-light.png" width="708" height="138" alt="Acatability" /></picture></a>
+      <a class="logo" href="/acatability/"><img src="/acatability/icon.png" width="36" height="36" alt="" /><span class="logo-word">Acatability</span></a>
       <ul class="nav">
         <li><a href="/acatability/how-it-works/">How it works</a></li>
         <li><a href="/acatability/pricing/">Pricing</a></li>
@@ -118,27 +117,34 @@
   </header>
 
   <main>
-    <div class="blobs" aria-hidden="true"><span></span><span></span><span></span></div>
 
     <section class="hero">
       <div class="wrap">
-        <h1 class="sr-only">Acatability</h1>
-        <picture>
-          <source srcset="/acatability/img/wordmark-dark.png" media="(prefers-color-scheme: dark)" />
-          <img class="wordmark-img" src="/acatability/img/wordmark-light.png" width="708" height="138" alt="" fetchpriority="high" />
-        </picture>
-        <div class="duo" role="img" aria-label="Two cats touching heads">
-          <div class="duo-cat right"><canvas id="cat-r"></canvas></div>
-          <div class="duo-cat left"><canvas id="cat-l"></canvas></div>
-          <svg class="duo-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.3-9.2C1.4 8.4 3.6 5 7 5c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.4 0 5.6 3.4 4.3 6.8C19.5 16.4 12 21 12 21z"/></svg>
+        <div class="hero-card">
+          <div class="bunting" aria-hidden="true"></div>
+          <img class="spark" src="/acatability/img/ui/sparkle.svg" alt="" aria-hidden="true" width="18" /><img class="spark" src="/acatability/img/ui/sparkle.svg" alt="" aria-hidden="true" width="14" /><img class="spark" src="/acatability/img/ui/sparkle.svg" alt="" aria-hidden="true" width="14" />
+          <h1 class="sticker">Acatability</h1>
+          <p class="h1">Tiny habits for your mind. Kept with friends.</p>
+          <p class="lede">5 calm minutes a day: journal, gratitude, meditation. Your friends see you showed up. A cat cheers you on.</p>
+          <div class="cta-row">
+            <a class="button" href="#join">Join the waitlist</a>
+            <a class="button ghost" href="/acatability/how-it-works/">See how it works</a>
+          </div>
+          <div class="scene">
+            <div class="scene-in">
+              <div class="duo-wrap">
+                <div class="cushion" aria-hidden="true"></div>
+                <div class="duo" role="img" aria-label="Two cats touching heads">
+                  <div class="duo-cat right"><canvas id="cat-r"></canvas></div>
+                  <div class="duo-cat left"><canvas id="cat-l"></canvas></div>
+                  <img class="duo-heart" src="/acatability/img/ui/heart.svg" alt="" aria-hidden="true" />
+                </div>
+                <p class="speech">Meow! I saved you a spot.</p>
+              </div>
+            </div>
+            <span class="die"><img src="/acatability/img/ui/paw.svg" alt="" aria-hidden="true" />Coming soon to iPhone</span>
+          </div>
         </div>
-        <p class="h1">Tiny habits for your mind. Kept with friends.</p>
-        <p class="lede">5 calm minutes a day: journal, gratitude, meditation. Your friends see you showed up. A cat cheers you on.</p>
-        <div class="cta-row">
-          <a class="button" href="#join">Join the waitlist</a>
-          <a class="button ghost" href="/acatability/how-it-works/">See how it works</a>
-        </div>
-        <p style="margin-top:16px"><span class="tag"><svg class="sakura" aria-hidden="true"><use href="#sakura"/></svg>Coming soon to iPhone</span></p>
       </div>
     </section>
 
@@ -171,8 +177,8 @@
 
     <section aria-labelledby="cat-title">
       <div class="wrap narrow">
-        <div class="card tinted center meet">
-          <div class="section-head center"><h2 id="cat-title" class="ribbon-wrap"><span class="ribbon"><svg class="sakura" aria-hidden="true"><use href="#sakura"/></svg>Meet your cat<svg class="sakura" aria-hidden="true"><use href="#sakura"/></svg></span></h2><p class="lede">6 colours. You pick the name. Go on, tap.</p></div>
+        <div class="card washi center meet">
+          <div class="section-head center"><h2 id="cat-title">Meet your cat</h2><p class="lede">6 colours. You pick the name. Go on, tap.</p></div>
           <div class="stage-wrap">
             <p class="bubble" id="bubble" aria-live="polite">Meow!</p>
             <button class="stage" id="cat-stage" type="button" aria-label="The Acatability cat. Tap for a trick">
@@ -195,7 +201,7 @@
       <div class="wrap">
         <div class="section-head center"><p class="eyebrow">What's inside</p><h2 id="inside-title">Small, soft and a bit silly</h2></div>
         <div class="grid four">
-          <div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h4"/></svg></div><h3>Private journal</h3><p>A few lines a day. Nobody else can ever read them.</p></div><div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div><h3>Gratitude</h3><p>Notice the good, even on rough days.</p></div><div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div><h3>Minutes</h3><p>Log journalling or meditation. Tap 1, 5, 10.</p></div><div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c.6-3.4 3-5 6-5s5.4 1.6 6 5M15 14.5c2.6-.3 5 1 5.6 4"/></svg></div><h3>A pact of 5</h3><p>See who checked in. Send a paw. Nudge a friend.</p></div><div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M3 9h18M12 9v11M12 9c-2-4-6-4-6-1.5S10 9 12 9c2 0 6 1 6-1.5S14 5 12 9z"/></svg></div><h3>Cat gifts</h3><p>Some days your cat brings a gift. 30 to find.</p></div><div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5 5.3.5-4 3.6 1.2 5.3L12 14.7 7.3 17.4l1.2-5.3-4-3.6 5.3-.5z"/></svg></div><h3>Your recap</h3><p>Your week, month and year as a little story. Free.</p></div><div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/></svg></div><h3>Widget</h3><p>Your cat on your home screen. Naps until you check in.</p></div><div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></div><h3>Gentle hellos</h3><p>One a day, only if you want it. Never a telling-off.</p></div>
+          <div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M9 9h6M9 13h4"/></svg></div><h3>Private journal</h3><p>A few lines a day. Nobody else can ever read them.</p></div><div class="card feature"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div><h3>Gratitude</h3><p>Notice the good, even on rough days.</p></div><div class="card feature"><div class="icon sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div><h3>Minutes</h3><p>Log journalling or meditation. Tap 1, 5, 10.</p></div><div class="card feature"><div class="icon lav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c.6-3.4 3-5 6-5s5.4 1.6 6 5M15 14.5c2.6-.3 5 1 5.6 4"/></svg></div><h3>A pact of 5</h3><p>See who checked in. Send a paw. Nudge a friend.</p></div><div class="card feature"><div class="icon butter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M3 9h18M12 9v11M12 9c-2-4-6-4-6-1.5S10 9 12 9c2 0 6 1 6-1.5S14 5 12 9z"/></svg></div><h3>Cat gifts</h3><p>Some days your cat brings a gift. 30 to find.</p></div><div class="card feature"><div class="icon butter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5 5.3.5-4 3.6 1.2 5.3L12 14.7 7.3 17.4l1.2-5.3-4-3.6 5.3-.5z"/></svg></div><h3>Your recap</h3><p>Your week, month and year as a little story. Free.</p></div><div class="card feature"><div class="icon sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/></svg></div><h3>Widget</h3><p>Your cat on your home screen. Naps until you check in.</p></div><div class="card feature"><div class="icon lav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></div><h3>Gentle hellos</h3><p>One a day, only if you want it. Never a telling-off.</p></div>
         </div>
       </div>
     </section>
@@ -220,8 +226,8 @@
 
     <section aria-labelledby="private-title">
       <div class="wrap narrow">
-        <div class="card tinted">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <div class="card mint">
+          <div class="icon mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
           <h2 id="private-title">Your words stay yours</h2>
           <p class="lede">Friends see that you showed up. Never what you wrote.</p>
           <ul class="ticks">
@@ -249,7 +255,7 @@
             <p class="price">£4.99<small> / month</small></p>
             <p class="muted">Or £34.99 a year. You + 4 friends, who join free.</p>
           </div>
-          <div class="card price-card">
+          <div class="card price-card gold">
             <h3>Founding Pact</h3>
             <p class="price">£40<small> once</small></p>
             <p class="muted">One payment, yours for good. On sale until 31 Dec 2026.</p>
@@ -300,7 +306,7 @@
 
   <footer class="site-foot">
     <div class="wrap">
-      <div class="paws" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="16" rx="5" ry="4"/><circle cx="6" cy="10" r="2"/><circle cx="10" cy="6.5" r="2"/><circle cx="14" cy="6.5" r="2"/><circle cx="18" cy="10" r="2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="16" rx="5" ry="4"/><circle cx="6" cy="10" r="2"/><circle cx="10" cy="6.5" r="2"/><circle cx="14" cy="6.5" r="2"/><circle cx="18" cy="10" r="2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="12" cy="16" rx="5" ry="4"/><circle cx="6" cy="10" r="2"/><circle cx="10" cy="6.5" r="2"/><circle cx="14" cy="6.5" r="2"/><circle cx="18" cy="10" r="2"/></svg></div>
+      <div class="paws" aria-hidden="true"><img src="/acatability/img/ui/paw.svg" alt="" width="26" height="26" /><img src="/acatability/img/ui/paw.svg" alt="" width="26" height="26" /><img src="/acatability/img/ui/paw.svg" alt="" width="26" height="26" /></div>
       <nav aria-label="Footer">
         <a href="/acatability/">Home</a>
         <a href="/acatability/how-it-works/">How it works</a>
