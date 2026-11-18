@@ -447,3 +447,20 @@ main, .site-head, .site-foot { position: relative; z-index: 1; }
   65%  { opacity: 0; transform: translateY(-30px) scale(1); }
   100% { opacity: 0; transform: translateY(-30px) scale(1); }
 }
+
+/* Screenshot gallery: a swipe strip of real app screens */
+.gallery {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 62%; gap: 16px;
+  overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px 16px 18px; margin: 0 -16px;
+  scrollbar-width: none;
+}
+.gallery::-webkit-scrollbar { display: none; }
+.shot { scroll-snap-align: center; text-align: center; }
+.shot .phone { width: 100%; height: auto; }
+.gallery + .swipe-hint { display: block; margin-top: 0; }
+.shot figcaption { margin-top: 10px; font-family: var(--num); font-weight: 600; font-size: 16px; color: var(--ink); }
+@media (min-width: 560px) { .gallery { grid-auto-columns: 40%; } }
+@media (min-width: 820px) {
+  .gallery { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 0; padding: 6px 0 0; gap: 28px 22px; }
+  .gallery + .swipe-hint { display: none; }
+}

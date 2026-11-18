@@ -154,6 +154,15 @@ def write(rel, text):
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w") as f: f.write(text)
 
+SHOTS = [
+    ("today", "Today", "Today: Persik the cat cheers under bunting, day 9, and you showed up today"),
+    ("check-in", "Check in", "The daily check-in: an intention, a journal prompt from your cat, and Done for today"),
+    ("pact", "Your pact", "The Pact tab: you and Priya on the sofa, 2 of 2 showed up today, 4 together days this month"),
+    ("history", "Your days", "Your days: a calendar with a paw on every day you showed up"),
+    ("recap", "Recap", "Recap: 6 days you showed up last week, with a Play button, plus month and year"),
+    ("me", "Me", "Me: your cat's name and colour, cat sounds and settings"),
+]
+
 def phone(name, alt, eager=False):
     lazy = "" if eager else ' loading="lazy"'
     return f'<img class="phone" src="/acatability/img/{name}.jpg" width="600" height="1300" alt="{esc(alt)}"{lazy} />'
@@ -371,19 +380,19 @@ home_body = f"""
             <div class="num">1</div>
             <h3>Check in</h3>
             <p>Write, list a few good things, log your minutes. Only you read it.</p>
-            {phone("check-in", "Today's check-in: a private journal, things you're grateful for and minutes spent")}
+            {phone("check-in", "The daily check-in: an intention, a journal prompt from your cat, and Done for today")}
           </figure>
           <figure class="step">
             <div class="num">2</div>
             <h3>Bring your friends</h3>
             <p>Send a code. Up to 4 friends join your pact, free.</p>
-            {phone("pact", "The Pact tab: two cats touching heads, 4 days together, and Priya checked in 12 minutes ago")}
+            {phone("pact", "The Pact tab: you and Priya on the sofa, 2 of 2 showed up today, 4 together days this month")}
           </figure>
           <figure class="step">
             <div class="num">3</div>
             <h3>Keep it going</h3>
             <p>Show up daily. Your cat goes wild.</p>
-            {phone("today", "Today: your cat and your days together")}
+            {phone("today", "Today: Persik the cat cheers under bunting, day 9, and you showed up today")}
           </figure>
         </div>
         <p class="swipe-hint">Swipe for more</p>
@@ -414,6 +423,16 @@ home_body = f"""
       </div>
     </section>
 
+    <section aria-labelledby="peek-title">
+      <div class="wrap">
+        {heading("Peek inside", sub="Real screens from the app.", eyebrow="Screenshots", hid="peek-title")}
+        <div class="gallery">
+          {"".join(f'<figure class="shot">{phone(n, alt)}<figcaption>{cap}</figcaption></figure>' for n, cap, alt in SHOTS)}
+        </div>
+        <p class="swipe-hint">Swipe for more</p>
+      </div>
+    </section>
+
     <section aria-labelledby="recap-title">
       <div class="wrap">
         <div class="split">
@@ -427,7 +446,7 @@ home_body = f"""
               <li>Share a picture: numbers and favourites only. Never your journal.</li>
             </ul>
           </div>
-          {phone("recap", "Recap: last week, 2 days you showed up, 10 minutes on yourself, and a Play button")}
+          {phone("recap", "Recap: 6 days you showed up last week, with a Play button, plus month and year")}
         </div>
       </div>
     </section>
@@ -504,24 +523,24 @@ how_body = f"""
     "List a few things you're grateful for.",
     "Tap your minutes: journalling or meditation.",
     "Stuck? Ask for a prompt. Want focus? Set an intention.",
-], "check-in", "The check-in sheet: journal, grateful for, and minute buttons")}
+], "check-in", "The check-in page: an intention to share with Priya, a journal prompt, and Done for today")}
 {split("Together", "pact-title", "Your pact", "A small group that shows up for each other.", [
     "Up to 5 of you. Friends join with a code, free.",
     "See who checked in, and when.",
     "Send a paw. Nudge someone, once a day.",
     "Count the days you all checked in.",
-], "pact", "The Pact tab: your pact with Priya, 4 days together, Priya checked in", flip=True)}
+], "pact", "The Pact tab: you and Priya on the sofa, 2 of 2 showed up today", flip=True)}
 {split("Your cat", "cat-title", "A cat in your corner", "Cheers when you show up. Never tells you off.", [
     "6 colours. You choose the name.",
     "Meows, purrs, and a hiss if you pull his tail. He forgives you.",
     "Some days he brings a gift. 30 to find.",
     "Day 1, 7, 30 and 365: a big thank-you.",
-], "today", "Today: your cat celebrating a check-in")}
+], "today", "Today: your cat celebrating a check-in under bunting")}
 {split("Looking back", "history-title", "History and recaps", "Every day you showed up, in one place.", [
     "List or calendar. Search anything.",
     "Open a day to read it again.",
     "Week, month and year recaps, free.",
-], "history", "History: a list of past check-ins with search", flip=True)}
+], "history", "Your days: a calendar with a paw on every day you showed up", flip=True)}
     <section aria-labelledby="extras-title">
       <div class="wrap">
         {heading("Little extras", hid="extras-title")}
