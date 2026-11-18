@@ -181,14 +181,14 @@ def page_title(icon_name, text):
 FAQS = [
     ("What is Acatability?", "An iPhone app for small daily mental-health habits you keep with friends. You check in each day with a private journal, a few good things and your minutes. Friends see you showed up. A cat cheers you on."),
     ("Is Acatability free?", "Yes, on your own, for good. Check-ins, your whole history, recaps and your cat are free. A pact with friends is £4.99 a month or £34.99 a year, with a 14-day free trial."),
-    ("How many friends can join my pact?", "Up to 4, so 5 of you in total. Friends join with a 6-character invite code."),
+    ("How many friends can join my pact?", "Up to 4, so 5 of you in total. Friends join with a 6-digit invite code."),
     ("Do my friends have to pay?", "No. One person pays. Everyone they invite joins free."),
     ("Can my friends read my journal?", "No. Your journal is never shown to anyone. Friends see that you checked in, plus only what you choose to share, like your gratitude or minutes."),
     ("What do I do each day?", "Check in: write a line or two, list a few things you're grateful for, and tap how many minutes you journalled or meditated. It takes about 5 minutes."),
     ("What if I miss a day?", "Nothing bad happens. Your total days stay, and your cat never tells you off. Just check in the next day."),
     ("Does it send notifications?", "Only if you say yes. Then your cat says hi once a day, only on days you haven't checked in. You can also hear when a friend checks in: just their name."),
     ("Is Acatability therapy or a medical app?", "No. It's a daily habit app, not a treatment. If you're struggling, please talk to a doctor. In the UK and Ireland you can call Samaritans free on 116 123."),
-    ("Is it on Android?", "Not yet. Acatability is made for iPhone."),
+    ("Is it on Android?", "Not yet. Acatability is made for iPhone and iPad."),
     ("When does Acatability launch?", "Soon. We're on the final checks. Join the waitlist and we'll email you the App Store link on launch day."),
     ("Where is my data kept?", "On servers in London. No ads, no tracking, no analytics. You can delete your account any time in the app."),
     ("Who makes Acatability?", "Qurek Limited, a small company in England and Wales. Say hi at info@qurek.biz."),
@@ -566,7 +566,7 @@ def price_card(name, price, small, note, ticks, best=False, tag=None, gold=False
     return f"""<div class="card price-card{' best' if best else ''}{' gold' if gold else ''}">{tg}<h2 class="h3">{name}</h2><p class="price">{price}<small>{small}</small></p><p class="muted">{note}</p><ul class="ticks">{t}</ul></div>"""
 
 pricing_faq = [
-    ("Is there a free trial?", "Yes. Every new account can try a pact free for 14 days. No card needed, and it never turns into a paid plan by itself."),
+    ("Is there a free trial?", "Yes, the first time you subscribe. It's Apple's 14-day free trial: it becomes the paid plan unless you cancel at least 24 hours before it ends. Manage it in your Apple ID settings."),
     ("Who pays in a pact?", "One person. Everyone they invite joins free. Only the person who pays can invite."),
     ("What if the person paying stops?", "Shared features pause for the pact until anyone in it subscribes. Everyone's journals and days are kept."),
     ("Can I cancel any time?", "Yes. Monthly and yearly plans renew until you cancel in your Apple ID settings, at least 24 hours before the period ends."),
@@ -586,7 +586,7 @@ pricing_body = f"""
         </div>
         <div class="card lav" style="margin-top:20px">
           <h2 class="h3">{spark()} Try a pact free for 14 days</h2>
-          <p class="muted">Every new account gets it. No card. It never turns into a paid plan by itself.</p>
+          <p class="muted">It's Apple's free trial, the first time you subscribe. It becomes the paid plan unless you cancel at least 24 hours before it ends. Manage it in your Apple ID settings.</p>
         </div>
       </div>
     </section>
@@ -603,7 +603,7 @@ pricing_body = f"""
 
 write("acatability/pricing/index.html", page(
     "/acatability/pricing/", "Acatability pricing: free on your own, £4.99 for a pact of 5",
-    "Acatability is free on your own, for good. A pact for you and up to 4 friends is £4.99 a month or £34.99 a year, and friends join free. Try it 14 days free, no card.",
+    "Acatability is free on your own, for good. A pact for you and up to 4 friends is £4.99 a month or £34.99 a year, and friends join free. Try it free for 14 days the first time you subscribe.",
     pricing_body, ld=[APP, faq_ld(pricing_faq), crumbs_ld([("/acatability/", "Acatability"), ("/acatability/pricing/", "Pricing")])],
     current="/acatability/pricing/"))
 
@@ -891,10 +891,10 @@ write("llms.txt", f"""# Acatability
 - Platform: iPhone (iOS). Not on Android.
 - Launch: coming soon to the App Store (date not announced yet). Waitlist: {BASE}/acatability/#join
 - Daily check-in (about 5 minutes): private journal, things you're grateful for, journalling or meditation minutes, optional intention and prompt.
-- Pact: you plus up to 4 friends (5 in total). Friends join free with a 6-character invite code. They see that you checked in, plus only what you choose to share. Journals are never shared.
+- Pact: you plus up to 4 friends (5 in total). Friends join free with a 6-digit invite code. They see that you checked in, plus only what you choose to share. Journals are never shared.
 - The cat: 6 colours, you name it; it cheers, meows, purrs, brings gifts (30 to find) and never tells you off.
 - Also: free week/month/year recaps, history with search and calendar, home-screen widget, one optional gentle reminder a day.
-- Price: Solo free for good. Pact £4.99/month or £34.99/year. Founding Pact £40 one payment, on sale until 31 December 2026. 14-day free pact trial, no card.
+- Price: Solo free for good. Pact £4.99/month or £34.99/year. Founding Pact £40 one payment, on sale until 31 December 2026. 14-day free trial the first time you subscribe (Apple's trial; it becomes the paid plan unless cancelled).
 - Privacy: no ads, no tracking, no analytics. Data stored in London (UK). Delete your account any time.
 - Not a medical or therapy app; makes no health claims.
 - Contact: info@qurek.biz
