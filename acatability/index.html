@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acatability: mental-health habits with friends, and a cat</title>
-  <meta name="description" content="Acatability is an iPhone app for small daily mental-health habits you keep with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own." />
+  <meta name="description" content="Acatability is an app for iPhone where you keep small daily mental-health habits with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own." />
   <link rel="canonical" href="https://qurek.biz/acatability/" />
   <meta name="theme-color" content="#FFF6F1" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#2A1622" media="(prefers-color-scheme: dark)" />
   <meta property="og:site_name" content="Acatability" />
   <meta property="og:title" content="Acatability: mental-health habits with friends, and a cat" />
-  <meta property="og:description" content="Acatability is an iPhone app for small daily mental-health habits you keep with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own." />
+  <meta property="og:description" content="Acatability is an app for iPhone where you keep small daily mental-health habits with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own." />
   <meta property="og:url" content="https://qurek.biz/acatability/" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://qurek.biz/acatability/img/og.png" />
@@ -52,10 +52,11 @@
       "@type": "MobileApplication",
       "@id": "https://qurek.biz/acatability/#app",
       "name": "Acatability",
-      "description": "An iPhone app for small daily mental-health habits kept with friends. Each day you check in with a private journal, a few things you're grateful for and your journalling or meditation minutes. Friends in your pact see that you showed up, plus only what you choose to share. A cat cheers you on. Free on your own; one plan brings up to four friends in, and they join free.",
+      "description": "An app for iPhone where you keep small daily mental-health habits with friends. Each day you check in with a private journal, a few things you're grateful for and your journalling or meditation minutes. Friends in your pact see that you showed up, plus only what you choose to share. A cat cheers you on. Free on your own; one plan brings up to four friends in, and they join free.",
       "operatingSystem": "iOS",
       "applicationCategory": "LifestyleApplication",
       "url": "https://qurek.biz/acatability/",
+      "downloadUrl": "https://apps.apple.com/app/id6805119917",
       "image": "https://qurek.biz/acatability/icon.png",
       "screenshot": [
         "https://qurek.biz/acatability/img/check-in.jpg",
@@ -127,7 +128,7 @@
           <p class="h1">Tiny habits for your mind. Kept with friends.</p>
           <p class="lede">5 calm minutes a day: journal, gratitude, meditation. Your friends see you showed up. A cat cheers you on.</p>
           <div class="cta-row">
-            <a class="button" href="#join">Join the waitlist</a>
+            <a class="app-badge" href="https://apps.apple.com/app/id6805119917"><img src="/acatability/img/app-store-badge.svg" width="144" height="48" alt="Download on the App Store" /></a>
             <a class="button ghost" href="/acatability/how-it-works/">See how it works</a>
           </div>
           <div class="scene">
@@ -142,7 +143,7 @@
                 <p class="speech">Meow! I saved you a spot.</p>
               </div>
             </div>
-            <span class="die"><img src="/acatability/img/ui/paw.svg" alt="" aria-hidden="true" />Coming soon to iPhone</span>
+            <span class="die"><img src="/acatability/img/ui/paw.svg" alt="" aria-hidden="true" />Out now for iPhone</span>
           </div>
         </div>
       </div>
@@ -302,13 +303,10 @@
 
     <section id="join" aria-labelledby="join-title">
       <div class="wrap narrow">
-        <div class="card tinted">
-          <h2 id="join-title">Join the waitlist</h2>
-          <p class="muted" style="margin-bottom:14px">We'll email you the App Store link on launch day.</p>
-          <div id="tally-wrap"></div>
-          <a id="fallback" class="button" href="https://tally.so/r/b50xX7">Join the waitlist</a>
-          <p class="small muted" id="direct" hidden style="margin-top:10px">Form not showing? <a href="https://tally.so/r/b50xX7">Open it here</a>.</p>
-          <p class="small muted" style="margin-top:10px">Free to start. No card needed. 3 emails at most. To be removed, email <a href="mailto:info@qurek.biz">info@qurek.biz</a>.</p>
+        <div class="card tinted center">
+          <h2 id="join-title">Your cat is waiting</h2>
+          <p class="muted">Free on your own. Bring friends any time.</p>
+          <div class="cta-row"><a class="button" href="https://apps.apple.com/app/id6805119917">Get the app</a></div>
         </div>
       </div>
     </section>
@@ -329,13 +327,14 @@
         <a href="mailto:info@qurek.biz">Contact</a>
       </nav>
       <p>Acatability is made by <a href="/">Qurek Limited</a>, a company registered in England and Wales.</p>
+      <p class="small">Apple, the Apple logo, iPhone, iPad and App Store are trademarks of Apple Inc., registered in the U.S. and other countries.</p>
     </div>
   </footer>
   <script src="/acatability/cat.js"></script>
   <script>
     // The app's cat: tap for a trick and a new line in the speech bubble
     // (typed letter by letter, like in the app). Swatches change his
-    // colour. He celebrates when someone joins the waitlist.
+    // colour.
     (function () {
       // The hero's two cats touching heads, like the app's sign-in.
       if (document.getElementById("cat-r")) {
@@ -379,33 +378,7 @@
         seen = true;
         setTimeout(function () { cat.play("wave"); next = 1; say("Meow! Tap me."); }, 400);
       }).observe(document.getElementById("cat-stage"));
-      window.addEventListener("message", function (e) {
-        if (typeof e.data !== "string" || e.data.indexOf("Tally.FormSubmitted") === -1) return;
-        cat.setMood("happy");
-        say("Yay! See you on launch day.");
-        setTimeout(function () { cat.play("jump"); }, 700);
-      });
     })();
-  </script>
-  <script>
-    // The Tally form ID (end of tally.so/r/XXXXXX). Clear it to fall back
-    // to the plain button.
-    var TALLY_FORM_ID = "b50xX7";
-    if (TALLY_FORM_ID && document.getElementById("tally-wrap")) {
-      var frame = document.createElement("iframe");
-      frame.title = "Acatability waitlist";
-      frame.setAttribute("data-tally-src", "https://tally.so/embed/" + TALLY_FORM_ID + "?hideTitle=1&transparentBackground=1&dynamicHeight=1");
-      document.getElementById("tally-wrap").appendChild(frame);
-      document.getElementById("fallback").remove();
-      document.getElementById("direct").hidden = false;
-      var s = document.createElement("script");
-      s.src = "https://tally.so/widgets/embed.js";
-      s.onload = s.onerror = function () {
-        if (window.Tally) { window.Tally.loadEmbeds(); }
-        else { frame.src = frame.getAttribute("data-tally-src"); }
-      };
-      document.body.appendChild(s);
-    }
   </script>
 </body>
 </html>

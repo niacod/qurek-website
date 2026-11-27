@@ -153,6 +153,8 @@ section { padding: 44px 0; }
 .h1 { text-wrap: balance; font-family: var(--body); font-weight: 900; font-size: clamp(24px, 4.6vw, 34px); line-height: 1.15; max-width: 16em; margin: 0 auto 10px; }
 .hero .lede { margin: 0 auto; }
 .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+.app-badge { display: inline-flex; align-items: center; line-height: 0; }
+.app-badge img { display: block; height: 48px; width: auto; }
 
 .scene { margin-top: 18px; padding-top: 12px; }
 .scene::before { /* the pink hill */

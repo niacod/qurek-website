@@ -1,13 +1,13 @@
 # Acatability
 
-> Acatability is an iPhone app for small daily mental-health habits you keep with friends, with a cat who cheers you on. Free on your own. Made by Qurek Limited (England and Wales).
+> Acatability is an app for iPhone where you keep small daily mental-health habits with friends, with a cat who cheers you on. Free on your own. Made by Qurek Limited (England and Wales).
 
-An iPhone app for small daily mental-health habits kept with friends. Each day you check in with a private journal, a few things you're grateful for and your journalling or meditation minutes. Friends in your pact see that you showed up, plus only what you choose to share. A cat cheers you on. Free on your own; one plan brings up to four friends in, and they join free.
+An app for iPhone where you keep small daily mental-health habits with friends. Each day you check in with a private journal, a few things you're grateful for and your journalling or meditation minutes. Friends in your pact see that you showed up, plus only what you choose to share. A cat cheers you on. Free on your own; one plan brings up to four friends in, and they join free.
 
 ## Key facts
 
-- Platform: iPhone (iOS). Not on Android.
-- Launch: coming soon to the App Store (date not announced yet). Waitlist: https://qurek.biz/acatability/#join
+- Platform: iPhone. Not on Android.
+- Out now on the App Store (launched 24 November 2026), free to download: https://apps.apple.com/app/id6805119917
 - Daily check-in (about 5 minutes): private journal, things you're grateful for, journalling or meditation minutes, optional intention and prompt.
 - Pact: you plus up to 4 friends (5 in total). Friends join free with a 6-digit invite code. They see that you checked in, plus only what you choose to share. Journals are never shared.
 - The cat: 6 colours, you name it; it cheers, meows, purrs, brings gifts (30 to find) and never tells you off.
@@ -35,7 +35,7 @@ An iPhone app for small daily mental-health habits kept with friends. Each day y
 
 ## FAQ
 
-- **What is Acatability?** An iPhone app for small daily mental-health habits you keep with friends. You check in each day with a private journal, a few good things and your minutes. Friends see you showed up. A cat cheers you on.
+- **What is Acatability?** An app for iPhone where you keep small daily mental-health habits with friends. You check in each day with a private journal, a few good things and your minutes. Friends see you showed up. A cat cheers you on.
 - **Is Acatability free?** Yes, on your own, for good. Check-ins, your whole history, recaps and your cat are free. A pact with friends is £4.99 a month or £34.99 a year, with a 14-day free trial.
 - **How many friends can join my pact?** Up to 4, so 5 of you in total. Friends join with a 6-digit invite code.
 - **Do my friends have to pay?** No. One person pays. Everyone they invite joins free.
@@ -45,6 +45,6 @@ An iPhone app for small daily mental-health habits kept with friends. Each day y
 - **Does it send notifications?** Only if you say yes. Then your cat says hi once a day, only on days you haven't checked in. You can also hear when a friend checks in: just their name.
 - **Is Acatability therapy or a medical app?** No. It's a daily habit app, not a treatment. If you're struggling, please talk to a doctor. In the UK and Ireland you can call Samaritans free on 116 123.
 - **Is it on Android?** Not yet. Acatability is made for iPhone and iPad.
-- **When does Acatability launch?** Soon. We're on the final checks. Join the waitlist and we'll email you the App Store link on launch day.
+- **Where do I get Acatability?** On the App Store. It's free to download.
 - **Where is my data kept?** On servers in London. No ads, no tracking, no analytics. You can delete your account any time in the app.
 - **Who makes Acatability?** Qurek Limited, a small company in England and Wales. Say hi at info@qurek.biz.

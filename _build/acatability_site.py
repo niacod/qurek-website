@@ -7,12 +7,19 @@ import json, os, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = "https://qurek.biz"
-TODAY = "2026-10-18"
-# The launch date isn't set yet (owner, 18 Oct). When it is, put it here
-# and in the four places that say "coming soon".
-LAUNCH = "coming soon"
+TODAY = "2026-11-27"
+# Out since 24 Nov 2026. Every "get the app" link goes here.
+APP_STORE_URL = "https://apps.apple.com/app/id6805119917"
 
 def esc(s): return html.escape(s, quote=True)
+
+# Apple's official black "Download on the App Store" badge, unchanged. Apple's
+# marketing guidelines: at least 40 px tall, clear space a quarter of its
+# height (the 12px cta-row gap at 48px), one per page, never recoloured,
+# tilted or animated. The footer carries Apple's credit line.
+def badge(h=48):
+    return (f'<a class="app-badge" href="{APP_STORE_URL}"><img src="/acatability/img/app-store-badge.svg" '
+            f'width="{round(h * 119.66407 / 40)}" height="{h}" alt="Download on the App Store" /></a>')
 
 SPARK_DEF = """<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="spark" viewBox="0 0 24 24"><path d="M12 2C12.8 8 16 11.2 22 12 16 12.8 12.8 16 12 22 11.2 16 8 12.8 2 12 8 11.2 11.2 8 12 2Z" fill="#FFE08A" stroke="#46203A" stroke-width="1.6" stroke-linejoin="round"/></symbol></defs></svg>"""
 
@@ -53,7 +60,7 @@ def icon(name, cls="icon"):
 ORG = {"@type": "Organization", "@id": f"{BASE}/#org", "name": "Qurek Limited", "url": f"{BASE}/",
        "email": "info@qurek.biz", "address": {"@type": "PostalAddress", "addressCountry": "GB"}}
 
-APP_DESC = ("An iPhone app for small daily mental-health habits kept with friends. Each day you check in with a "
+APP_DESC = ("An app for iPhone where you keep small daily mental-health habits with friends. Each day you check in with a "
             "private journal, a few things you're grateful for and your journalling or meditation minutes. Friends in "
             "your pact see that you showed up, plus only what you choose to share. A cat cheers you on. Free on your "
             "own; one plan brings up to four friends in, and they join free.")
@@ -61,7 +68,7 @@ APP_DESC = ("An iPhone app for small daily mental-health habits kept with friend
 APP = {
     "@type": "MobileApplication", "@id": f"{BASE}/acatability/#app", "name": "Acatability",
     "description": APP_DESC, "operatingSystem": "iOS", "applicationCategory": "LifestyleApplication",
-    "url": f"{BASE}/acatability/", "image": f"{BASE}/acatability/icon.png",
+    "url": f"{BASE}/acatability/", "downloadUrl": APP_STORE_URL, "image": f"{BASE}/acatability/icon.png",
     "screenshot": [f"{BASE}/acatability/img/{n}.jpg" for n in ("check-in", "pact", "today", "history", "recap")],
     "author": {"@id": f"{BASE}/#org"}, "publisher": {"@id": f"{BASE}/#org"},
     "offers": [
@@ -143,6 +150,7 @@ def page(path, title, desc, body, ld=(), current=None, og_type="website", script
         <a href="mailto:info@qurek.biz">Contact</a>
       </nav>
       <p>Acatability is made by <a href="/">Qurek Limited</a>, a company registered in England and Wales.</p>
+      <p class="small">Apple, the Apple logo, iPhone, iPad and App Store are trademarks of Apple Inc., registered in the U.S. and other countries.</p>
     </div>
   </footer>
 {scripts}</body>
@@ -179,7 +187,7 @@ def page_title(icon_name, text):
 
 # ---------------------------------------------------------------- FAQ data
 FAQS = [
-    ("What is Acatability?", "An iPhone app for small daily mental-health habits you keep with friends. You check in each day with a private journal, a few good things and your minutes. Friends see you showed up. A cat cheers you on."),
+    ("What is Acatability?", "An app for iPhone where you keep small daily mental-health habits with friends. You check in each day with a private journal, a few good things and your minutes. Friends see you showed up. A cat cheers you on."),
     ("Is Acatability free?", "Yes, on your own, for good. Check-ins, your whole history, recaps and your cat are free. A pact with friends is £4.99 a month or £34.99 a year, with a 14-day free trial."),
     ("How many friends can join my pact?", "Up to 4, so 5 of you in total. Friends join with a 6-digit invite code."),
     ("Do my friends have to pay?", "No. One person pays. Everyone they invite joins free."),
@@ -189,7 +197,7 @@ FAQS = [
     ("Does it send notifications?", "Only if you say yes. Then your cat says hi once a day, only on days you haven't checked in. You can also hear when a friend checks in: just their name."),
     ("Is Acatability therapy or a medical app?", "No. It's a daily habit app, not a treatment. If you're struggling, please talk to a doctor. In the UK and Ireland you can call Samaritans free on 116 123."),
     ("Is it on Android?", "Not yet. Acatability is made for iPhone and iPad."),
-    ("When does Acatability launch?", "Soon. We're on the final checks. Join the waitlist and we'll email you the App Store link on launch day."),
+    ("Where do I get Acatability?", "On the App Store. It's free to download."),
     ("Where is my data kept?", "On servers in London. No ads, no tracking, no analytics. You can delete your account any time in the app."),
     ("Who makes Acatability?", "Qurek Limited, a small company in England and Wales. Say hi at info@qurek.biz."),
 ]
@@ -204,47 +212,22 @@ def faq_ld(items):
     return {"@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in items]}
 
-WAITLIST = """
+GET_APP = f"""
     <section id="join" aria-labelledby="join-title">
       <div class="wrap narrow">
-        <div class="card tinted">
-          <h2 id="join-title">Join the waitlist</h2>
-          <p class="muted" style="margin-bottom:14px">We'll email you the App Store link on launch day.</p>
-          <div id="tally-wrap"></div>
-          <a id="fallback" class="button" href="https://tally.so/r/b50xX7">Join the waitlist</a>
-          <p class="small muted" id="direct" hidden style="margin-top:10px">Form not showing? <a href="https://tally.so/r/b50xX7">Open it here</a>.</p>
-          <p class="small muted" style="margin-top:10px">Free to start. No card needed. 3 emails at most. To be removed, email <a href="mailto:info@qurek.biz">info@qurek.biz</a>.</p>
+        <div class="card tinted center">
+          <h2 id="join-title">Your cat is waiting</h2>
+          <p class="muted">Free on your own. Bring friends any time.</p>
+          <div class="cta-row"><a class="button" href="{APP_STORE_URL}">Get the app</a></div>
         </div>
       </div>
     </section>"""
-
-TALLY_JS = """  <script>
-    // The Tally form ID (end of tally.so/r/XXXXXX). Clear it to fall back
-    // to the plain button.
-    var TALLY_FORM_ID = "b50xX7";
-    if (TALLY_FORM_ID && document.getElementById("tally-wrap")) {
-      var frame = document.createElement("iframe");
-      frame.title = "Acatability waitlist";
-      frame.setAttribute("data-tally-src", "https://tally.so/embed/" + TALLY_FORM_ID + "?hideTitle=1&transparentBackground=1&dynamicHeight=1");
-      document.getElementById("tally-wrap").appendChild(frame);
-      document.getElementById("fallback").remove();
-      document.getElementById("direct").hidden = false;
-      var s = document.createElement("script");
-      s.src = "https://tally.so/widgets/embed.js";
-      s.onload = s.onerror = function () {
-        if (window.Tally) { window.Tally.loadEmbeds(); }
-        else { frame.src = frame.getAttribute("data-tally-src"); }
-      };
-      document.body.appendChild(s);
-    }
-  </script>
-"""
 
 CAT_JS = """  <script src="/acatability/cat.js"></script>
   <script>
     // The app's cat: tap for a trick and a new line in the speech bubble
     // (typed letter by letter, like in the app). Swatches change his
-    // colour. He celebrates when someone joins the waitlist.
+    // colour.
     (function () {
       // The hero's two cats touching heads, like the app's sign-in.
       if (document.getElementById("cat-r")) {
@@ -288,12 +271,6 @@ CAT_JS = """  <script src="/acatability/cat.js"></script>
         seen = true;
         setTimeout(function () { cat.play("wave"); next = 1; say("Meow! Tap me."); }, 400);
       }).observe(document.getElementById("cat-stage"));
-      window.addEventListener("message", function (e) {
-        if (typeof e.data !== "string" || e.data.indexOf("Tally.FormSubmitted") === -1) return;
-        cat.setMood("happy");
-        say("Yay! See you on launch day.");
-        setTimeout(function () { cat.play("jump"); }, 700);
-      });
     })();
   </script>
 """
@@ -351,7 +328,7 @@ home_body = f"""
           <p class="h1">Tiny habits for your mind. Kept with friends.</p>
           <p class="lede">5 calm minutes a day: journal, gratitude, meditation. Your friends see you showed up. A cat cheers you on.</p>
           <div class="cta-row">
-            <a class="button" href="#join">Join the waitlist</a>
+            {badge()}
             <a class="button ghost" href="/acatability/how-it-works/">See how it works</a>
           </div>
           <div class="scene">
@@ -366,7 +343,7 @@ home_body = f"""
                 <p class="speech">Meow! I saved you a spot.</p>
               </div>
             </div>
-            <span class="die">{ui("paw")}Coming soon to iPhone</span>
+            <span class="die">{ui("paw")}Out now for iPhone</span>
           </div>
         </div>
       </div>
@@ -484,15 +461,15 @@ home_body = f"""
         <p class="center" style="margin-top:18px"><a href="/acatability/faq/">All questions</a></p>
       </div>
     </section>
-{WAITLIST}"""
+{GET_APP}"""
 
 write("acatability/index.html", page(
     "/acatability/", "Acatability: mental-health habits with friends, and a cat",
-    "Acatability is an iPhone app for small daily mental-health habits you keep with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own.",
+    "Acatability is an app for iPhone where you keep small daily mental-health habits with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own.",
     home_body,
     ld=[{"@type": "WebSite", "@id": f"{BASE}/acatability/#site", "name": "Acatability", "url": f"{BASE}/acatability/",
          "publisher": {"@id": f"{BASE}/#org"}, "inLanguage": "en-GB"}, APP],
-    scripts=CAT_JS + TALLY_JS))
+    scripts=CAT_JS))
 
 # ---------------------------------------------------------------- How it works
 def split(eyebrow, hid, title, lede, ticks, img, alt, flip=False):
@@ -549,7 +526,7 @@ how_body = f"""
           {feature("widget", "Home-screen widget", "Your cat naps until you check in, then cheers.")}
           {feature("lock", "Private by design", "No ads, no tracking. Your journal is never shared.")}
         </div>
-        <div class="cta-row" style="margin-top:28px"><a class="button" href="/acatability/#join">Join the waitlist</a><a class="button ghost" href="/acatability/pricing/">See pricing</a></div>
+        <div class="cta-row" style="margin-top:28px">{badge()}<a class="button ghost" href="/acatability/pricing/">See pricing</a></div>
       </div>
     </section>"""
 
@@ -597,7 +574,7 @@ pricing_body = f"""
 {faq_html(pricing_faq)}
         </div>
         <p class="small muted center" style="margin-top:18px">Prices are in UK pounds. The App Store shows your local price.</p>
-        <div class="cta-row"><a class="button" href="/acatability/#join">Join the waitlist</a></div>
+        <div class="cta-row">{badge()}</div>
       </div>
     </section>"""
 
@@ -625,7 +602,7 @@ faq_body = f"""
 
 write("acatability/faq/index.html", page(
     "/acatability/faq/", "Acatability FAQ: price, privacy, friends and the cat",
-    "Answers about Acatability: is it free, how many friends can join, can friends read your journal, notifications, privacy and launch date.",
+    "Answers about Acatability: is it free, how many friends can join, can friends read your journal, notifications, privacy and where to get it.",
     faq_body, ld=[faq_ld(FAQS), crumbs_ld([("/acatability/", "Acatability"), ("/acatability/faq/", "FAQ")])],
     current="/acatability/faq/"))
 
@@ -768,7 +745,7 @@ press_body = f"""
       <div class="wrap narrow">
         <div class="card">
           <h2 class="h3" id="oneliner-title">In one line</h2>
-          <p>Acatability is an iPhone app for small daily mental-health habits you keep with friends, with a cat who cheers you on.</p>
+          <p>Acatability is an app for iPhone where you keep small daily mental-health habits with friends, with a cat who cheers you on.</p>
           <h2 class="h3" style="margin-top:18px">In a paragraph</h2>
           <p>{esc(APP_DESC)}</p>
         </div>
@@ -781,7 +758,7 @@ press_body = f"""
           <dl class="facts">
             <dt>Name</dt><dd>Acatability</dd>
             <dt>Platform</dt><dd>iPhone</dd>
-            <dt>Launch</dt><dd>Coming soon to the App Store</dd>
+            <dt>Launched</dt><dd>24 November 2026, <a href="{APP_STORE_URL}">on the App Store</a></dd>
             <dt>Price</dt><dd>Free on your own. Pact for up to 5: £4.99/month or £34.99/year. Founding Pact £40 once, until 31 Dec 2026.</dd>
             <dt>Privacy</dt><dd>Journals are never shared. No ads, no tracking. Data stored in London.</dd>
             <dt>Made by</dt><dd>Qurek Limited, England and Wales</dd>
@@ -813,7 +790,6 @@ write("acatability/press/index.html", page(
 # tap also copies "acatability-join:<code>" to the clipboard (P38-01), so the
 # app can read it after install without a clipboard-read prompt (P38-02);
 # keep this page free of plans, payment and price (E-03).
-APP_STORE_URL = "https://apps.apple.com/app/id6805119917"
 join_body = f"""
     <div class="wrap narrow">
       <div class="card tinted" id="join-card" style="text-align:center;margin-top:32px" hidden>
@@ -882,14 +858,14 @@ faq_md = "\n".join(f"- **{q}** {a}" for q, a in FAQS)
 guides_md = "\n".join(f"- [{t}]({BASE}/acatability/guides/{s}/)" for s, t, _ in GUIDES)
 write("llms.txt", f"""# Acatability
 
-> Acatability is an iPhone app for small daily mental-health habits you keep with friends, with a cat who cheers you on. Free on your own. Made by Qurek Limited (England and Wales).
+> Acatability is an app for iPhone where you keep small daily mental-health habits with friends, with a cat who cheers you on. Free on your own. Made by Qurek Limited (England and Wales).
 
 {APP_DESC}
 
 ## Key facts
 
-- Platform: iPhone (iOS). Not on Android.
-- Launch: coming soon to the App Store (date not announced yet). Waitlist: {BASE}/acatability/#join
+- Platform: iPhone. Not on Android.
+- Out now on the App Store (launched 24 November 2026), free to download: {APP_STORE_URL}
 - Daily check-in (about 5 minutes): private journal, things you're grateful for, journalling or meditation minutes, optional intention and prompt.
 - Pact: you plus up to 4 friends (5 in total). Friends join free with a 6-digit invite code. They see that you checked in, plus only what you choose to share. Journals are never shared.
 - The cat: 6 colours, you name it; it cheers, meows, purrs, brings gifts (30 to find) and never tells you off.
