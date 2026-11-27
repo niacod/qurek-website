@@ -60,7 +60,7 @@ def icon(name, cls="icon"):
 ORG = {"@type": "Organization", "@id": f"{BASE}/#org", "name": "Qurek Limited", "url": f"{BASE}/",
        "email": "info@qurek.biz", "address": {"@type": "PostalAddress", "addressCountry": "GB"}}
 
-APP_DESC = ("An app for iPhone where you keep small daily mental-health habits with friends. Each day you check in with a "
+APP_DESC = ("An app for iPhone and iPad where you keep small daily mental-health habits with friends. Each day you check in with a "
             "private journal, a few things you're grateful for and your journalling or meditation minutes. Friends in "
             "your pact see that you showed up, plus only what you choose to share. A cat cheers you on. Free on your "
             "own; one plan brings up to four friends in, and they join free.")
@@ -187,7 +187,7 @@ def page_title(icon_name, text):
 
 # ---------------------------------------------------------------- FAQ data
 FAQS = [
-    ("What is Acatability?", "An app for iPhone where you keep small daily mental-health habits with friends. You check in each day with a private journal, a few good things and your minutes. Friends see you showed up. A cat cheers you on."),
+    ("What is Acatability?", "An app for iPhone and iPad where you keep small daily mental-health habits with friends. You check in each day with a private journal, a few good things and your minutes. Friends see you showed up. A cat cheers you on."),
     ("Is Acatability free?", "Yes, on your own, for good. Check-ins, your whole history, recaps and your cat are free. A pact with friends is £4.99 a month or £34.99 a year, with a 14-day free trial."),
     ("How many friends can join my pact?", "Up to 4, so 5 of you in total. Friends join with a 6-digit invite code."),
     ("Do my friends have to pay?", "No. One person pays. Everyone they invite joins free."),
@@ -343,7 +343,7 @@ home_body = f"""
                 <p class="speech">Meow! I saved you a spot.</p>
               </div>
             </div>
-            <span class="die">{ui("paw")}Out now for iPhone</span>
+            <span class="die">{ui("paw")}Out now for iPhone and iPad</span>
           </div>
         </div>
       </div>
@@ -465,7 +465,7 @@ home_body = f"""
 
 write("acatability/index.html", page(
     "/acatability/", "Acatability: mental-health habits with friends, and a cat",
-    "Acatability is an app for iPhone where you keep small daily mental-health habits with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own.",
+    "Acatability is an app for iPhone and iPad where you keep small daily mental-health habits with friends: a private journal, gratitude and meditation minutes. Friends see you showed up, and a cute cat cheers you on. Free on your own.",
     home_body,
     ld=[{"@type": "WebSite", "@id": f"{BASE}/acatability/#site", "name": "Acatability", "url": f"{BASE}/acatability/",
          "publisher": {"@id": f"{BASE}/#org"}, "inLanguage": "en-GB"}, APP],
@@ -745,7 +745,7 @@ press_body = f"""
       <div class="wrap narrow">
         <div class="card">
           <h2 class="h3" id="oneliner-title">In one line</h2>
-          <p>Acatability is an app for iPhone where you keep small daily mental-health habits with friends, with a cat who cheers you on.</p>
+          <p>Acatability is an app for iPhone and iPad where you keep small daily mental-health habits with friends, with a cat who cheers you on.</p>
           <h2 class="h3" style="margin-top:18px">In a paragraph</h2>
           <p>{esc(APP_DESC)}</p>
         </div>
@@ -757,7 +757,7 @@ press_body = f"""
           <h2 class="h3" id="facts-title">Facts</h2>
           <dl class="facts">
             <dt>Name</dt><dd>Acatability</dd>
-            <dt>Platform</dt><dd>iPhone</dd>
+            <dt>Platform</dt><dd>iPhone and iPad</dd>
             <dt>Launched</dt><dd>24 November 2026, <a href="{APP_STORE_URL}">on the App Store</a></dd>
             <dt>Price</dt><dd>Free on your own. Pact for up to 5: £4.99/month or £34.99/year. Founding Pact £40 once, until 31 Dec 2026.</dd>
             <dt>Privacy</dt><dd>Journals are never shared. No ads, no tracking. Data stored in London.</dd>
@@ -858,13 +858,13 @@ faq_md = "\n".join(f"- **{q}** {a}" for q, a in FAQS)
 guides_md = "\n".join(f"- [{t}]({BASE}/acatability/guides/{s}/)" for s, t, _ in GUIDES)
 write("llms.txt", f"""# Acatability
 
-> Acatability is an app for iPhone where you keep small daily mental-health habits with friends, with a cat who cheers you on. Free on your own. Made by Qurek Limited (England and Wales).
+> Acatability is an app for iPhone and iPad where you keep small daily mental-health habits with friends, with a cat who cheers you on. Free on your own. Made by Qurek Limited (England and Wales).
 
 {APP_DESC}
 
 ## Key facts
 
-- Platform: iPhone. Not on Android.
+- Platform: iPhone and iPad. Not on Android.
 - Out now on the App Store (launched 24 November 2026), free to download: {APP_STORE_URL}
 - Daily check-in (about 5 minutes): private journal, things you're grateful for, journalling or meditation minutes, optional intention and prompt.
 - Pact: you plus up to 4 friends (5 in total). Friends join free with a 6-digit invite code. They see that you checked in, plus only what you choose to share. Journals are never shared.
